@@ -1,8 +1,8 @@
 import React from "react";
 
-type ErrorState = {
-    error: any,
-    errorInfo: any
+export interface ErrorState {
+    error: any;
+    errorInfo: any;
 }
 
 export class ErrorBoundary extends React.Component<unknown, ErrorState> {

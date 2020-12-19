@@ -3,11 +3,6 @@ import movies from "../../../../assets/data/movies.json"
 
 export class MovieCardListBoundary extends React.Component {
 
-  constructor(props: any) {
-    super(props);
-  }
-  
-
   render(): React.ReactNode | null | undefined {
     if (movies.length === 0) {
       return (

@@ -25,7 +25,7 @@ export function MovieCard({
         <div className={styles['movie-card__title']}>{title}</div>
         <div className={styles['movie-card__release-date']}>{getYear(releaseDate)}</div>
       </div>
-      <div className={styles['movie-card__geners']}>{converGeners(geners)}</div>
+      <div className={styles['movie-card__geners']}>{convertArrayGenersToString(geners)}</div>
     </div>
   );
 }
@@ -34,8 +34,8 @@ function getYear(date: string) {
   return new Date(date).getFullYear();
 }
 
-function converGeners(geners: string[]) {
-  if (!geners || !geners.length) {
+function convertArrayGenersToString(geners: string[]) {
+  if (geners?.length) {
     return;
   }
 
