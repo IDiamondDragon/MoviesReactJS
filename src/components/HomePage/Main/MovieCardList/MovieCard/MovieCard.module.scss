@@ -1,0 +1,39 @@
+@import "../../../../../styles/supporting/colors";
+
+.movie-card {
+   margin-bottom: 50px;
+   color: #a3a3a3;
+
+   &__image {
+      height: 460px;
+      width: 320px;
+      margin-bottom: 19px;
+   }  
+
+   &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__title {
+      font-size: 17px;
+   }
+
+   &__release-date {
+      padding: 5px 9px 5px 9px;
+      font-size: 15px;
+      border: 1px solid #a3a3a3;;
+      border-radius: 7px;
+   }
+
+   &__geners {
+      margin-top: 3px;
+      font-size: 15px;
+      font-weight: 700;
+      color: $emperor;  
+   }
+}
+
+    
+

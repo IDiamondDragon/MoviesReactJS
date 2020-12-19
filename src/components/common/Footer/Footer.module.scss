@@ -1,0 +1,13 @@
+@import "../../../styles/supporting/colors";
+
+.footer {
+    position: relative;
+    padding: 16px;
+    background-color: $tundora; 
+
+    &__baner {
+        display: block;
+        margin: 0 auto;
+    }
+}
+

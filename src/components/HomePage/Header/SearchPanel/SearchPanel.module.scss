@@ -1,0 +1,47 @@
+@import "../../../../styles/supporting/colors";
+
+.search-panel {
+   width: 960px;
+
+   &__title {
+      font-size: 36px;
+      font-weight: 100;    
+      color: $white;
+      margin-bottom: 44px;
+   }
+}
+
+.search {
+   display: flex;
+
+  &__input {
+    margin-right: 14px;
+    padding-left: 14px;
+    height: 55px;
+    width: 750px;
+    font-size: 20px;
+    color: $white;
+    border: none;
+    border-radius: 7px;
+    background: rgba(0, 0, 0, 0.5);
+    outline: none;
+  }
+
+  &__button {
+      width: 174px;
+      height: 55px;
+      border: none;
+      font-size: 20px;
+      font-weight: 500;
+      color: $white;
+      background: $carnation;
+      border-radius: 7px;
+      outline: none;
+
+      &:hover {
+         background: rgba(221, 73, 87, 1);
+      }
+  }
+}
+
+

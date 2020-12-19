@@ -1,0 +1,14 @@
+.movie-card-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.right-margin {
+    margin-right: 50px;
+
+    &:nth-child(3n + 0) {
+        margin-right: 0px;
+    }
+}
+    
+
