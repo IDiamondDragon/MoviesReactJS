@@ -35,7 +35,7 @@ function getYear(date: string) {
 }
 
 function convertArrayGenersToString(geners: string[]) {
-  if (geners?.length) {
+  if (!geners?.length) {
     return;
   }
 
