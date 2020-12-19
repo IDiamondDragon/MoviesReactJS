@@ -1,18 +1,22 @@
-import React from "react";
+import React, { ErrorInfo, ReactNode } from "react";
 
-export interface ErrorState {
-    error: any;
-    errorInfo: any;
+interface Props {
+  children: ReactNode;
 }
 
-export class ErrorBoundary extends React.Component<unknown, ErrorState> {
+export interface ErrorState {
+    error: Error | null;
+    errorInfo: ErrorInfo | null;
+}
 
-  constructor(props: ErrorState) {
+export class ErrorBoundary extends React.Component<Props, ErrorState> {
+
+  constructor(props: Props) {
     super(props);
     this.state = { error: null, errorInfo: null };
   }
   
-  componentDidCatch(error: any, errorInfo: any): void {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Catch errors in any components below and re-render with error message
     this.setState({
       error: error,
