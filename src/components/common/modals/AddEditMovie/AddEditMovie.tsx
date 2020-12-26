@@ -37,7 +37,7 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
     }
   }
 
-  inputChangedHandler = (event) => {
+  inputChangedHandler = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
     const updatedKeyword = event.target.value;
   }
  
