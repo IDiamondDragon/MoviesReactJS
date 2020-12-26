@@ -1,0 +1,20 @@
+@import "../../../styles/supporting/colors";
+
+.add-movie-button {
+   width: 174px;
+   height: 46px;
+   border: none;
+   font-size: 20px;
+   font-weight: 500;
+   color: $carnation;
+   background: rgba(255, 255, 255, 0.3);
+   border-radius: 7px;
+   outline: none;
+
+   &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      // color:white; 
+   }
+}
+
+

@@ -1,0 +1,64 @@
+@import "../../../../styles/supporting/colors";
+
+.filters-panel {
+   display: flex;
+   margin-bottom: 26px;
+   height: 38px;
+   width: 100%;
+   justify-content: space-between;
+   border-bottom: 2px solid $emperor;
+}
+
+.filters {
+   display: flex;
+
+   .filter {
+      height: 39px;
+      font-size: 17px;
+      color: $white;
+
+      + .filter {
+         margin-left: 30px;
+      }
+
+      &--selected {
+         border-bottom: 3px solid $carnation;
+      }
+   }
+}
+
+.sort {
+   display: flex;
+
+   &__title {
+      margin-right: 30px;
+      font-size: 18px;
+      font-weight: 500;
+      color: $emperor;
+   }
+
+   &__combobox {
+      font-size: 17px;
+      color: $white;
+   }
+}
+
+.arrow {
+   display: inline-block;
+   margin-left: 12px;   
+   margin-bottom: 3px;
+   padding: 3px;
+   border: solid black;
+   border-width: 0 3px 3px 0;   
+   border-color: $carnation;
+ }
+
+ .down {
+   transform: rotate(45deg);
+   -webkit-transform: rotate(45deg);
+ }
+
+ .up {
+   transform: rotate(-135deg);
+   -webkit-transform: rotate(-135deg);
+ }

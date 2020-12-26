@@ -1,0 +1,13 @@
+@import "../styles/supporting/element-sizes";
+
+.app {
+    display: flex;
+    margin: auto;
+    height: 100%;
+    width: $content-width;
+    flex-direction: column;
+}
+
+.stretch {
+    flex: 1;
+}
