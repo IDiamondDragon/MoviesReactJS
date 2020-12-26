@@ -14,6 +14,10 @@
 @import "./supporting/colors";
 @import "./mixins/common-mixins";
 
+//components
+@import "./components/modal.scss";
+@import "./components/react-modal.scss";
+
 // site
 html, body {
   height: 100%;

@@ -9,6 +9,7 @@
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
       "resolveJsonModule": true,
+      "noImplicitAny": false,
       "isolatedModules": true,
       "noEmit": true,
       "jsx": "react"

@@ -6,19 +6,21 @@ import { MovieCardList } from './MovieCardList/MovieCardList';
 import MovieCardListBoundary from './MovieCardListBoundary/MovieCardListBoundary';
 
 import styles from './Main.module.scss';
+import { IMovie } from '../../../models/common/interfaces/Movie.';
 
 
 export interface MainProps {
+  movies: IMovie[];
   className: string
 }
 
-export function Main({ className }: MainProps): JSX.Element {
+export function Main({ className, movies }: MainProps): JSX.Element {
   return (
     <div className={`${styles['main']} ${className}`}>
       <FiltersPanel/>
       <MovieCardListBoundary>
         <CounterMovies/>
-        <MovieCardList/>
+        <MovieCardList movies={movies}/>
       </MovieCardListBoundary>
     </div>
   );

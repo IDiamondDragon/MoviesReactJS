@@ -1,0 +1,51 @@
+@import "../supporting/colors";
+@import "title.scss";
+
+.modal {
+  position: relative;
+  background-color: $mineShaft;
+
+  &__title {
+    @extend .title
+  }
+
+  &__description {
+    margin-bottom: 56px;
+    font-size: 20px;
+    color: $white;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__cross {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    width: 25px;
+    height: 25px;
+    opacity: 0.9;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:before, &:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 30px;
+      width: 2px;
+      background-color: $white;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}

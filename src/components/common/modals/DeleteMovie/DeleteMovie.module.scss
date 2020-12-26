@@ -1,0 +1,15 @@
+@import "../../../../styles/supporting/colors";
+@import "../../../../styles/components/button.scss";
+
+.delete-movie {
+   padding: 74px 84px;
+   width: 686px;
+
+   &__confirm {
+     @extend .button;
+     margin-left: auto;
+   }
+}
+
+    
+

@@ -115,10 +115,7 @@ const config: webpack.Configuration = {
       title: "Movies"
     }),
     new ForkTsCheckerWebpackPlugin({
-      async: false,
-      eslint: {
-        files: "./src/**/*",
-      },
+      async: false
     }),
     // new MiniCssExtractPlugin({ // plugin for controlling how compiled css will be outputted and named
     //   filename: "css/[name].css",

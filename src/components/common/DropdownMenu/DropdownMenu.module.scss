@@ -1,0 +1,38 @@
+@import "../../../styles/supporting/colors";
+
+.menu {
+  background-color: $mineShaft;
+  
+  &__item {
+    background-color: $mineShaft;
+    color: $white;
+    font-size: 17px;
+
+    &:hover {
+      background-color: $carnation;
+    }
+  }
+
+  &__tree-dots {
+    position: relative;
+    background: $mineShaft;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 50%;
+    margin: 50px;
+
+    &:after {
+      content: '•••';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      font-size: 15px; 
+      letter-spacing: 3px;
+      margin-top: 2px;
+    }
+  }
+}
+    
+

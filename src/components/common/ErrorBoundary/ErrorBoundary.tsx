@@ -32,7 +32,7 @@ export class ErrorBoundary extends React.Component<Props, ErrorState> {
         <div style={{fontSize: '30px', textAlign: 'center', marginTop: '30px', color: 'black'}}>
           <h2>Something went wrong.</h2>
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            {this.state.error && this.state.error.toString()}
+            { this.state?.error?.toString() }
             <br />
             {this.state.errorInfo.componentStack}
           </details>
