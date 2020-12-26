@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IMovie } from '../../../../models/common/interfaces/Movie.';
+import { IMovie } from '../../../../models/common/interfaces/Movie';
 
 import styles from './AddEditMovie.module.scss';
 
@@ -37,7 +37,8 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
     }
   }
 
-  inputChangedHandler = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
+  handleInputChange  = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updatedKeyword = event.target.value;
   }
  
@@ -53,7 +54,7 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
                 ?
                   <input className="field__input" value={this.state.movie.title} 
                                                   placeholder="Title here"
-                                                  onChange={(event)=>this.inputChangedHandler(event)}></input>
+                                                  onChange={this.handleInputChange}></input>
                 :
                   <label className="field__label" placeholder="Title here">{this.state.movie.title}</label>
             }
@@ -64,7 +65,7 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
                    type="date" 
                   placeholder="Selecte Date"
                   value={this.state.movie.releaseDate}
-                  onChange={(event)=>this.inputChangedHandler(event)}>  
+                  onChange={this.handleInputChange}>  
             </input>
           </div>
           <div className="field">
@@ -72,11 +73,11 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
             <input className="field__input" 
                    placeholder="Movie URL here" 
                    value={this.state.movie.posterPath}
-                   onChange={(event)=>this.inputChangedHandler(event)}></input>
+                   onChange={this.handleInputChange}></input>
           </div>
           <div className="field">
             <div className="field__title">GENRE</div> 
-            <select className="field__select" defaultValue={'DEFAULT'} onChange={(event)=>this.inputChangedHandler(event)}>
+            <select className="field__select" defaultValue={'DEFAULT'} onChange={this.handleInputChange}>
               <option value="DEFAULT" disabled>Select Genre</option>
               {/* <option value="" disabled hidden={true} selected>Select Genre</option> */}
               {
@@ -91,7 +92,7 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
             <input className="field__input" 
                    placeholder="Overview here" 
                   value={this.state.movie.overview}
-                  onChange={(event)=>this.inputChangedHandler(event)}>              
+                  onChange={this.handleInputChange}>              
             </input>
           </div>
           <div className={`${styles['add-edit-movie-form__last']} field`}>
@@ -99,7 +100,7 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
             <input className="field__input" 
                    placeholder="Runtime here" 
                    value={this.state.movie.runtime}
-                   onChange={(event)=>this.inputChangedHandler(event)}></input>
+                   onChange={this.handleInputChange}></input>
           </div>
           <div className={styles['add-edit-movie-form__buttons']}>
             <button type="reset" 

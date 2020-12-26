@@ -3,7 +3,7 @@ import React from "react";
 import HeaderPageComponent from './Header/Header';
 import Main from './Main/Main';
 import Footer from '../common/Footer/Footer';
-import { IMovie } from '../../models/common/interfaces/Movie.';
+import { IMovie } from '../../models/common/interfaces/Movie';
 import { loadData } from '../../services/api/loadData';
 
 import styles from './HomePage.module.scss';

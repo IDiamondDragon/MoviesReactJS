@@ -21,6 +21,10 @@
     color: $carnation !important;
     background-color: transparent !important;
     border: 1px solid $carnation !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
   }
 }
     

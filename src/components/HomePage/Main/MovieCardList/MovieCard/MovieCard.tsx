@@ -1,6 +1,8 @@
 import React from "react";
 import Modal from 'react-modal';
-import { IMovie } from '../../../../../models/common/interfaces/Movie.';
+
+import { IMovie } from '../../../../../models/common/interfaces/Movie';
+
 import DropdownMenu from '../../../../common/DropdownMenu/DropdownMenu';
 import AddEditMovie from '../../../../common/modals/AddEditMovie/AddEditMovie';
 import DeleteMovie from '../../../../common/modals/DeleteMovie/DeleteMovieMovie';
@@ -21,8 +23,8 @@ export interface MovieCardProps {
 
 export function MovieCard({ className, movie = intialValueMovie}: MovieCardProps): JSX.Element {
 
-  const [editMovieModalIsOpen, setIsEditMovieOpen] = React.useState(false);
-  const [deleteMovieModalIsOpen, setIsDeleteMovieOpen] = React.useState(false);
+  const [isEditMovieModaOpen, setIsEditMovieOpen] = React.useState(false);
+  const [isDeleteMovieModalOpen, setIsDeleteMovieOpen] = React.useState(false);
 
   function openEditMovieModal() {
     setIsEditMovieOpen(true);
@@ -58,19 +60,18 @@ export function MovieCard({ className, movie = intialValueMovie}: MovieCardProps
       />
     </div>
     <Modal
-      isOpen={editMovieModalIsOpen}
+      isOpen={isEditMovieModaOpen}
       // onRequestClose={closeEditMovieModal}
       className="react-modal"
       overlayClassName="react-overlay"
       contentLabel="Example Modal"
     >
       <AddEditMovie movie={movie} onClick={closeEditMovieModal}/>
-      {/* <DeleteMovie id='' onClick={closeModal}/> */}
     </Modal>
     <Modal
-      isOpen={deleteMovieModalIsOpen}
+      isOpen={isDeleteMovieModalOpen}
       // onRequestClose={closeDeleteMovieModal}
-      className="react-modal"
+      className="react-modal react-modal--no-paddings"
       overlayClassName="react-overlay"
       contentLabel="Example Modal"
     >

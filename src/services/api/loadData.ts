@@ -1,4 +1,5 @@
-import { IMovie } from '../../models/common/interfaces/Movie.'
+import { IMovie } from '../../models/common/interfaces/Movie'
+
 import movies from '../../assets/data/movies.json'
 
 export function loadData(): IMovie[] {

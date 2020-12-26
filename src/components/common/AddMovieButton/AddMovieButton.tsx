@@ -2,7 +2,8 @@ import React from "react";
 
 import Modal from 'react-modal';
 import AddEditMovie from '../modals/AddEditMovie/AddEditMovie';
-import { IMovie } from '../../../models/common/interfaces/Movie.';
+
+import { IMovie } from '../../../models/common/interfaces/Movie';
 
 import styles from './AddMovieButton.module.scss';
 
@@ -20,14 +21,14 @@ export interface AddMovieButtonProps {
 }
 
 export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   
   function openModal() {
-    setIsOpen(true);
+    setIsModalOpen(true);
   }
 
   function closeModal(){
-    setIsOpen(false);
+    setIsModalOpen(false);
   }
 
   return (
@@ -37,7 +38,7 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
           + ADD MOVIE
         </button>
         <Modal
-          isOpen={modalIsOpen}
+          isOpen={isModalOpen}
           onRequestClose={closeModal}
           className="react-modal"
           overlayClassName="react-overlay"

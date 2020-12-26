@@ -1,12 +1,13 @@
 import React from "react";
 
-import { FiltersPanel } from './FiltersPanel/FiltersPanel';
+import FiltersPanel from './FiltersPanel/FiltersPanel';
 import CounterMovies from './CounterMovies/CounterMovies';
-import { MovieCardList } from './MovieCardList/MovieCardList';
+import MovieCardList from './MovieCardList/MovieCardList';
 import MovieCardListBoundary from './MovieCardListBoundary/MovieCardListBoundary';
 
+import { IMovie } from '../../../models/common/interfaces/Movie';
+
 import styles from './Main.module.scss';
-import { IMovie } from '../../../models/common/interfaces/Movie.';
 
 
 export interface MainProps {
