@@ -1,6 +1,7 @@
 declare namespace MovieCardModuleScssNamespace {
   export interface IMovieCardModuleScss {
     "movie-card": string;
+    "movie-card__dropdown-menu": string;
     "movie-card__geners": string;
     "movie-card__image": string;
     "movie-card__release-date": string;

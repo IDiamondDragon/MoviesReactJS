@@ -1,0 +1,16 @@
+.button {
+  display: inline-block;
+  height: 55px;
+  width: 182px;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  color: $white;
+  background: $carnation;
+  border-radius: 7px;
+  outline: none;
+
+  &:hover {
+     background: rgba(221, 73, 87, 1);
+  }
+}

@@ -1,24 +1,27 @@
 import React from "react";
 
-import { FiltersPanel } from './FiltersPanel/FiltersPanel';
+import FiltersPanel from './FiltersPanel/FiltersPanel';
 import CounterMovies from './CounterMovies/CounterMovies';
-import { MovieCardList } from './MovieCardList/MovieCardList';
+import MovieCardList from './MovieCardList/MovieCardList';
 import MovieCardListBoundary from './MovieCardListBoundary/MovieCardListBoundary';
+
+import { IMovie } from '../../../models/common/interfaces/Movie';
 
 import styles from './Main.module.scss';
 
 
 export interface MainProps {
+  movies: IMovie[];
   className: string
 }
 
-export function Main({ className }: MainProps): JSX.Element {
+export function Main({ className, movies }: MainProps): JSX.Element {
   return (
     <div className={`${styles['main']} ${className}`}>
       <FiltersPanel/>
       <MovieCardListBoundary>
         <CounterMovies/>
-        <MovieCardList/>
+        <MovieCardList movies={movies}/>
       </MovieCardListBoundary>
     </div>
   );

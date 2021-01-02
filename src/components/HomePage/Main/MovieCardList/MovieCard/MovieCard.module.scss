@@ -1,6 +1,7 @@
 @import "../../../../../styles/supporting/colors";
 
 .movie-card {
+   position: relative;
    margin-bottom: 50px;
    color: #a3a3a3;
 
@@ -9,6 +10,14 @@
       width: 320px;
       margin-bottom: 19px;
    }  
+
+   
+   &__dropdown-menu {
+    position: absolute !important;
+    margin: 0 !important;
+    top: 15px;
+    right: 15px;
+  }
 
    &__wrapper {
       display: flex;

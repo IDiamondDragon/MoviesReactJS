@@ -1,0 +1,31 @@
+@import "../../../../styles/supporting/colors";
+
+
+.add-edit-movie {
+   padding: 74px 84px;
+   width: 686px;
+}
+
+.add-edit-movie-form {
+  &__buttons {
+    display: flex;
+  }
+
+  &__last {
+    margin-bottom: 94px !important;
+  }
+
+  &__reset {
+    margin-left: auto;
+    margin-right: 16px;
+    color: $carnation !important;
+    background-color: transparent !important;
+    border: 1px solid $carnation !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+}
+    
+

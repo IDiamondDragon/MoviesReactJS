@@ -1,10 +1,13 @@
 declare namespace SearchPanelModuleScssNamespace {
   export interface ISearchPanelModuleScss {
+    button: string;
+    input: string;
     search: string;
     "search-panel": string;
     "search-panel__title": string;
     search__button: string;
     search__input: string;
+    title: string;
   }
 }
 
