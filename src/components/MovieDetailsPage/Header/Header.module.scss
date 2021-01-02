@@ -4,12 +4,12 @@
     margin-bottom: 10px;
     position: relative;
     padding-top: 110px;
-    padding-bottom: 146px;
-    background-image: url("../../../assets/images/App/HomePage/Header/netflix-blur-background.jpg"); 
+    padding-bottom: 55px;
+    background-image: url("../../../assets/images/App/HomePage/Header/black-mirror-blur.jpg"); 
     background-color: $mineShaft; 
     background-position: center; 
     background-repeat: no-repeat; 
-    background-size: cover;
+    background-size: 3000px;
 
     &__baner {
         top: 20px;
@@ -17,7 +17,7 @@
         position: absolute;
     }
 
-    &__button {
+    &__search-icon {
         top: 20px;
         right: 55px;
         position: absolute;      

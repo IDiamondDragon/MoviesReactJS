@@ -1,0 +1,16 @@
+@import "../../../../styles/supporting/colors";
+
+.search-icon {
+  height: 30px;
+  width: 30px;
+  background-image: url("../../../../assets/images/App/SearchIcon/search-icon-transparent.png"); 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  cursor: pointer;
+  //  &:hover {
+  //     background: rgba(255, 255, 255, 0.5);
+  //  }
+}
+
+

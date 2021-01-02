@@ -1,35 +1,35 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import Modal from 'react-modal';
-import AddEditMovie from '../modals/AddEditMovie/AddEditMovie';
+import AddEditMovie from '../../../common/modals/AddEditMovie/AddEditMovie';
 
-import { IMovie } from '../../../models/common/interfaces/Movie';
+import { intialValueMovie } from '../../../../services/data/initialValueMovie';
 
 import styles from './AddMovieButton.module.scss';
 
-const intialValueMovie: IMovie = {id: 0,
-  posterPath: undefined,
-  title: 'None',
-  releaseDate: 'None',
-  overview: 'None',
-  runtime: 0,
-  geners: []};
 
 
-export interface AddMovieButtonProps {
+
+interface AddMovieButtonProps {
   className: string
 }
 
 export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   
-  function openModal() {
-    setIsModalOpen(true);
-  }
+  const openModal = useCallback(
+    () => {
+      setIsModalOpen(true);
+    },
+    [],
+  );
 
-  function closeModal(){
-    setIsModalOpen(false);
-  }
+  const closeModal = useCallback(
+    () => {
+      setIsModalOpen(false);
+    },
+    [],
+  );
 
   return (
     <>
@@ -44,7 +44,7 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
           overlayClassName="react-overlay"
           contentLabel="Example Modal"
         >
-          <AddEditMovie movie={intialValueMovie} onClick={closeModal}/>
+          <AddEditMovie movie={intialValueMovie()} onClick={closeModal}/>
       </Modal>
     </>
   );
