@@ -5,7 +5,7 @@ import { IMovie } from '../../../../models/common/interfaces/IMovie';
 import { getYear } from '../../../../services/helpers/getYear';
 import { intialValueMovie } from '../../../../services/data/initialValueMovie';
 
-import styles from './MovieDetaislPanel.module.scss';
+import styles from './MovieDetailsPanel.module.scss';
 
 export interface MovieDetaislPanelProps {
   movie?: IMovie;

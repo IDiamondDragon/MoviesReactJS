@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from '../../common/Banner/Baner';
-import MovieDetaislPanel from './MovieDetaislPanel/MovieDetaislPanel';
+import MovieDetaislPanel from './MovieDetailsPanel/MovieDetailsPanel';
 import SearchIcon from './SearchIcon/SearchIcon';
 
 import { IMovie } from '../../../models/common/interfaces/IMovie';

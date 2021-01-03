@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { DependencyList, useEffect, useRef } from 'react';
 
-export const useComponentDidMount = (callback: () => void, memo: DependencyList = []): void => {
+export const useComponentDidUpdate = (callback: () => void, memo: DependencyList = []): void => {
   const flag = useRef(false);
 
   if (!flag.current) {
