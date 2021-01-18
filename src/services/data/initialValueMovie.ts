@@ -8,7 +8,7 @@ export function intialValueMovie(): IMovie {
     tagline: 'None',
     voteAverage: 0,
     voteCount: 0,  
-    posterPath: undefined,
+    posterPath: '',
     releaseDate: 'None',
     overview: 'None',
     budget: 0,
