@@ -5,7 +5,7 @@ import CounterMovies from './CounterMovies/CounterMovies';
 import MovieCardList from './MovieCardList/MovieCardList';
 import MovieCardListBoundary from './MovieCardListBoundary/MovieCardListBoundary';
 
-import { IMovie } from '../../../models/common/interfaces/Movie';
+import { IMovie } from '../../../models/common/interfaces/IMovie';
 
 import styles from './Main.module.scss';
 

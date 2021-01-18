@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { IMovie } from '../../../../models/common/interfaces/Movie';
+import { IMovie } from '../../../../models/common/interfaces/IMovie';
+
+import { intialValueMovie } from '../../../../services/data/initialValueMovie';
 
 import styles from './AddEditMovie.module.scss';
+
 
 
 export interface AddEditMovieProps {
@@ -15,73 +18,65 @@ export interface AddEditMovieState {
   movie: IMovie;
 }
 
-const intialValueMovie: IMovie = {id: 0,
-  posterPath: undefined,
-  title: 'None',
-  releaseDate: 'None',
-  overview: 'None',
-  runtime: 0,
-  geners: []};
+function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
 
-class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>   {
-  state: AddEditMovieState = {
-    movie: intialValueMovie
-  }
+  const [movie, setMovie] = useState(intialValueMovie);
 
-  constructor(props: AddEditMovieProps) {
-    super(props);
-
+  useEffect(() => {
     if (props.movie) {
-      this.state.movie = {...props.movie};
-      this.state.movie.geners = [...props.movie.geners];
+      setMovie({...props.movie, genres: [...props.movie.genres]})
     }
-  }
+  }, [props.movie])
 
-  handleInputChange  = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleInputChange  = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updatedKeyword = event.target.value;
   }
  
-  render(): JSX.Element {
     return (
-      <div className={`${styles['add-edit-movie']} ${this.props.className} modal`}> 
-        <div className="modal__title">EDIT MOVIE</div>
-        <div className="modal__cross" onClick={this.props.onClick}></div>
+      <div className={`${styles['add-edit-movie']} ${props.className} modal`}> 
+        <div className="modal__title">{ movie.id ? 'EDIT MOVIE' : 'ADD MOVIE'}</div>
+        <div className="modal__cross" onClick={props.onClick}></div>
         <form className={`${styles['add-edit-movie-form']} formLayout`}>
+          { 
+            movie.id != 0 ?
+              <div className="field">
+                <div className="field__title">MOVIE ID</div> {
+                      <label className="field__label" >{movie.id}</label>
+                }
+              </div>
+              : null
+          }
           <div className="field">
-            <div className="field__title">TITLE</div> {
-              this.state?.movie.id 
-                ?
-                  <input className="field__input" value={this.state.movie.title} 
-                                                  placeholder="Title here"
-                                                  onChange={this.handleInputChange}></input>
-                :
-                  <label className="field__label" placeholder="Title here">{this.state.movie.title}</label>
-            }
+            <div className="field__title">TITLE</div> 
+            <input className="field__input" 
+                   placeholder="Title here" 
+                   value={movie.title}
+                   onChange={handleInputChange}></input>
           </div>
           <div className="field">
             <div className="field__title">RELEASE DATE</div> 
             <input className="field__input" 
                    type="date" 
                   placeholder="Selecte Date"
-                  value={this.state.movie.releaseDate}
-                  onChange={this.handleInputChange}>  
+                  value={movie.releaseDate}
+                  onChange={handleInputChange}>  
             </input>
           </div>
           <div className="field">
             <div className="field__title">MOVIE URL</div> 
             <input className="field__input" 
                    placeholder="Movie URL here" 
-                   value={this.state.movie.posterPath}
-                   onChange={this.handleInputChange}></input>
+                   value={movie.posterPath}
+                   onChange={handleInputChange}></input>
           </div>
           <div className="field">
             <div className="field__title">GENRE</div> 
-            <select className="field__select" defaultValue={'DEFAULT'} onChange={this.handleInputChange}>
+            <select className="field__select" defaultValue={'DEFAULT'} onChange={handleInputChange}>
               <option value="DEFAULT" disabled>Select Genre</option>
               {/* <option value="" disabled hidden={true} selected>Select Genre</option> */}
               {
-                this.state.movie.geners.map(gener => {
+                movie.genres.map(gener => {
                   return <option key={gener} value={gener}>{gener}</option>
                 })
               }
@@ -91,16 +86,16 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
             <div className="field__title">OVERVIEW</div> 
             <input className="field__input" 
                    placeholder="Overview here" 
-                  value={this.state.movie.overview}
-                  onChange={this.handleInputChange}>              
+                  value={movie.overview}
+                  onChange={handleInputChange}>              
             </input>
           </div>
           <div className={`${styles['add-edit-movie-form__last']} field`}>
             <div className="field__title">RUNTIME</div> 
             <input className="field__input" 
                    placeholder="Runtime here" 
-                   value={this.state.movie.runtime}
-                   onChange={this.handleInputChange}></input>
+                   value={movie.runtime}
+                   onChange={handleInputChange}></input>
           </div>
           <div className={styles['add-edit-movie-form__buttons']}>
             <button type="reset" 
@@ -108,14 +103,13 @@ class AddEditMovie extends React.Component<AddEditMovieProps, AddEditMovieState>
                       RESET
             </button>
             <button className={`field__button ${styles['add-edit-movie-form__submit']}`}
-                    onClick={this.props.onClick}>
+                    onClick={props.onClick}>
               SUBMIT
             </button>
           </div>
         </form>
       </div>
     );
-  }
 }
 
 export default AddEditMovie

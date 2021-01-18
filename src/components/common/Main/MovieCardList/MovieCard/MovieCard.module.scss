@@ -3,7 +3,8 @@
 .movie-card {
    position: relative;
    margin-bottom: 50px;
-   color: #a3a3a3;
+   color: $silverChalice;
+   cursor: pointer;
 
    &__image {
       height: 460px;

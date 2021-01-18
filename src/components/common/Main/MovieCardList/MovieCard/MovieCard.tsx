@@ -1,47 +1,35 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Modal from 'react-modal';
 
-import { IMovie } from '../../../../../models/common/interfaces/Movie';
+import { IMovie } from '../../../../../models/common/interfaces/IMovie';
 
-import DropdownMenu from '../../../../common/DropdownMenu/DropdownMenu';
-import AddEditMovie from '../../../../common/modals/AddEditMovie/AddEditMovie';
-import DeleteMovie from '../../../../common/modals/DeleteMovie/DeleteMovieMovie';
+import DropdownMenu from '../../../DropdownMenu/DropdownMenu';
+import AddEditMovie from '../../../modals/AddEditMovie/AddEditMovie';
+import DeleteMovie from '../../../modals/DeleteMovie/DeleteMovieMovie';
+
+import { getYear } from '../../../../../services/helpers/getYear';
+import { intialValueMovie } from '../../../../../services/data/initialValueMovie';
 
 import styles from './MovieCard.module.scss';
 
-const intialValueMovie: IMovie = {id: 0,
-                          posterPath: undefined,
-                          title: 'None',
-                          releaseDate: 'None',
-                          overview: 'None',
-                          runtime: 0,
-                          geners: []};
+
+
+
 export interface MovieCardProps {
   movie: IMovie;
   className?: string
 }
 
-export function MovieCard({ className, movie = intialValueMovie}: MovieCardProps): JSX.Element {
+export function MovieCard({ className, movie = intialValueMovie()}: MovieCardProps): JSX.Element {
 
   const [isEditMovieModaOpen, setIsEditMovieOpen] = React.useState(false);
   const [isDeleteMovieModalOpen, setIsDeleteMovieOpen] = React.useState(false);
 
-  function openEditMovieModal() {
-    setIsEditMovieOpen(true);
-  }
+  const openEditMovieModal = useCallback( () => { setIsEditMovieOpen(true); }, [] );
+  const closeEditMovieModal = useCallback( () => { setIsEditMovieOpen(false); }, []);
 
-  function closeEditMovieModal(){
-    setIsEditMovieOpen(false);
-  }
-
-  function openDeleteMovieModal() {
-    setIsDeleteMovieOpen(true);
-  }
-
-  function closeDeleteMovieModal(){
-    setIsDeleteMovieOpen(false);
-  }
-
+  const openDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(true); }, []);
+  const closeDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(false); }, []);
 
   return (
     <>
@@ -53,7 +41,7 @@ export function MovieCard({ className, movie = intialValueMovie}: MovieCardProps
         <div className={styles['movie-card__title']}>{movie.title}</div>
         <div className={styles['movie-card__release-date']}>{getYear(movie.releaseDate)}</div>
       </div>
-      <div className={styles['movie-card__geners']}>{convertArrayGenersToString(movie.geners)}</div>
+      <div className={styles['movie-card__geners']}>{convertArrayGenersToString(movie.genres)}</div>
       <DropdownMenu onOpenEditMovieModal={openEditMovieModal}
                     onOpenDeleteMovieModal={openDeleteMovieModal}
                     className={styles['movie-card__dropdown-menu']}
@@ -80,10 +68,6 @@ export function MovieCard({ className, movie = intialValueMovie}: MovieCardProps
     </Modal>
   </>
   );
-}
-
-function getYear(date: string) {
-  return new Date(date).getFullYear();
 }
 
 function convertArrayGenersToString(geners: string[]) {

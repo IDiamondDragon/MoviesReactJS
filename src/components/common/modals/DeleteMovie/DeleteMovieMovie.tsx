@@ -9,6 +9,7 @@ export interface AddEditMovieProps {
   className?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function DeleteMovie({ className, id, onClick }: AddEditMovieProps): JSX.Element {
   return (
     <div className={`${styles['delete-movie']} ${className} modal`}> 

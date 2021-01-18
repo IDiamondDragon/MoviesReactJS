@@ -1,7 +1,7 @@
 import React from "react";
 import MovieCard from './MovieCard/MovieCard';
 
-import { IMovie } from '../../../../models/common/interfaces/Movie';
+import { IMovie } from '../../../../models/common/interfaces/IMovie';
 
 import styles from './MovieCardList.module.scss';
 
