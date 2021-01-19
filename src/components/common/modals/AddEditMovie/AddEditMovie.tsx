@@ -44,7 +44,10 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
   }
  
   const handleSelectChange = (genersSelect: ValueType<OptionTypeBase, boolean>, actionMeta: ActionMeta<OptionTypeBase>): void => {
-    setMovie({...movie, genres: genersSelect?.map(gener => gener.value)})
+    let changedGeners = genersSelect?.map(gener => gener.value);
+    changedGeners = changedGeners ? changedGeners : [];
+   
+    setMovie({...movie, genres: changedGeners})
   }
 
   const onSubmit = (e: React.MouseEvent): void => {
@@ -59,6 +62,13 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
     movie.runtime = Number(movie.runtime);
 
     props.onSubmit(movie);
+  }
+
+  const reset = (e: React.MouseEvent): void => {
+    const intialValueMovie = { ...props.movie};
+    intialValueMovie.runtime = intialValueMovie.runtime ? intialValueMovie.runtime : 0;
+
+    setMovie(intialValueMovie);
   }
 
   return (
@@ -144,8 +154,9 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
                   onChange={handleInputChange}></input>
         </div>
         <div className={styles['add-edit-movie-form__buttons']}>
-          <button type="reset" 
-                  className={`field__button ${styles['add-edit-movie-form__reset']}`}>
+          <button type="button"
+                  className={`field__button ${styles['add-edit-movie-form__reset']}`}
+                  onClick={reset}>
                     RESET
           </button>
           <button className={`field__button ${styles['add-edit-movie-form__submit']}`}
