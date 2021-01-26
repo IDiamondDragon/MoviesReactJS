@@ -28,7 +28,7 @@ export function Main({ className, movies }: MainProps): JSX.Element {
       {
         isLoading 
           ?         
-            <div style={{fontSize: '30px', textAlign: 'center', marginTop: '100px', color: '#FFFFFF'}}>
+            <div className='loading-indicator'>
               Loading...
             </div>
           :

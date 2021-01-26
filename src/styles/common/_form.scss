@@ -31,6 +31,10 @@
 
   &__input {
     @extend .input;
+
+    &--error {
+      border: 1px solid $carnation;
+    }
   }
 
   &__label {
@@ -46,7 +50,9 @@
     @extend .button;
   }
 
-  .error-message {
+  &__error-message {
+    margin-top: 6px;
+    font-size: $text-small-size;
     color: $carnation
   }
 }

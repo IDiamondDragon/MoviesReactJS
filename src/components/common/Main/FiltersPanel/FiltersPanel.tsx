@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 import Select, { ActionMeta, ValueType, OptionTypeBase } from 'react-select';
@@ -18,7 +18,7 @@ export interface FiltersPanelProps {
 export function FiltersPanel({ className }: FiltersPanelProps): JSX.Element {
   const dispatch = useDispatch();
 
-  const setFilters = React.useCallback(
+  const setFilters = useCallback(
     (filters: IFilters)=> dispatch(setFiltersAction(filters)),
     [dispatch]
   );
@@ -76,7 +76,7 @@ export function FiltersPanel({ className }: FiltersPanelProps): JSX.Element {
         </span> */}
         <Select
               closeMenuOnSelect={true}
-              className={`${styles['sort__combobox']} react-select-container`}
+              className={`react-select-container ${styles['sort__combobox']} `}
               classNamePrefix="react-select"
               defaultValue={sortingOptions[0]}
               options={sortingOptions}

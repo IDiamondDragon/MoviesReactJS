@@ -18,14 +18,23 @@
       height: 39px;
       font-size: $text-middle-size;
       color: $white;
+      cursor: pointer;
 
       + .filter {
          margin-left: 30px;
       }
 
-      &--selected {
-         border-bottom: 3px solid $carnation;
+      &:hover {
+        border-bottom: 3px solid $silverChalice;
       }
+      
+      &--selected {
+        border-bottom: 3px solid $carnation;
+
+        &:hover {
+         border-bottom: 3px solid $carnation;
+       }
+     }
    }
 }
 

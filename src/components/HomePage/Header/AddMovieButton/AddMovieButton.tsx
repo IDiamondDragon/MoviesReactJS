@@ -39,7 +39,7 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
 
   const dispatch = useDispatch();
 
-  const addMovie = React.useCallback(
+  const addMovie = useCallback(
     (movie: IMovie)=> { 
       dispatch(addMovieAction(movie));
       closeModal();
@@ -55,7 +55,7 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
         </button>
         <Modal
           isOpen={isModalOpen}
-          onRequestClose={closeModal}
+          // onRequestClose={closeModal}
           className="react-modal"
           overlayClassName="react-overlay"
           contentLabel="Example Modal"

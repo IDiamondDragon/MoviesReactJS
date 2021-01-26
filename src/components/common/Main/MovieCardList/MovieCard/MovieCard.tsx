@@ -15,10 +15,6 @@ import { updateMovieAction, deleteMovieAction } from '../../../../../store/movie
 import styles from './MovieCard.module.scss';
 
 
-
-
-
-
 export interface MovieCardProps {
   movie: IMovie;
   className?: string
@@ -36,15 +32,15 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
 
   const dispatch = useDispatch();
 
-  const updateMovie = React.useCallback(
+  const updateMovie = useCallback(
     (movie: IMovie)=> { 
       dispatch(updateMovieAction(movie));
-      closeEditMovieModal();
+      // closeEditMovieModal();
     },
     [dispatch, closeEditMovieModal]
   );
 
-  const deleteMovie = React.useCallback(
+  const deleteMovie = useCallback(
     (id: number | undefined)=> { 
       dispatch(deleteMovieAction(id));
       closeDeleteMovieModal();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from './Header/Header';
@@ -16,7 +16,7 @@ import styles from './HomePage.module.scss';
 function HomePage(): JSX.Element {
   const dispatch = useDispatch();
 
-  const getMovies = React.useCallback(
+  const getMovies = useCallback(
     ()=> dispatch(getMoviesAction()),
     [dispatch]
   );
