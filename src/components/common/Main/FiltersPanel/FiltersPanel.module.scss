@@ -12,6 +12,7 @@
 
 .filters {
    display: flex;
+   text-transform: uppercase;
 
    .filter {
       height: 39px;
@@ -30,6 +31,8 @@
 
 .sort {
    display: flex;
+   align-items: center;
+   margin-bottom: 17px;
 
    &__title {
       margin-right: 30px;

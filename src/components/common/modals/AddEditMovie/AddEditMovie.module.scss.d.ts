@@ -4,6 +4,10 @@ declare namespace AddEditMovieModuleScssNamespace {
     "add-edit-movie-form__buttons": string;
     "add-edit-movie-form__last": string;
     "add-edit-movie-form__reset": string;
+    filter__group: string;
+    filter__menu: string;
+    filter__option: string;
+    "filter__option--is-focused": string;
   }
 }
 

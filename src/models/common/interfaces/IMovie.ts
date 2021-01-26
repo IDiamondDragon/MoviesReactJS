@@ -1,6 +1,6 @@
 
 export interface IMovie {
-  id: number;
+  id: number | undefined;
   title: string;
   tagline: string;
   voteAverage: number;

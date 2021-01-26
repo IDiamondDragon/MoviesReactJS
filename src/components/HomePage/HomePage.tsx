@@ -1,28 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from './Header/Header';
 import Main from '../common/Main/Main';
 import Footer from '../common/Footer/Footer';
 
-import { IMovie } from '../../models/common/interfaces/IMovie';
-
-import { loadData } from '../../services/api/loadData';
 import { useComponentDidMount } from '../../services/hooks/useComponentDidMount';
+import { getMoviesSelector } from '../../store/movies/movies.selectors';
+import { getMoviesAction } from '../../store/movies/movies.actions';
 
 import styles from './HomePage.module.scss';
 
 
-function HomePage(): JSX.Element {
 
-  const [movies, setMovies] = useState<IMovie[]>([]);
+function HomePage(): JSX.Element {
+  const dispatch = useDispatch();
+
+  const getMovies = React.useCallback(
+    ()=> dispatch(getMoviesAction()),
+    [dispatch]
+  );
+
+  const movies = useSelector(getMoviesSelector);
 
   useComponentDidMount(() => {
-    setMovies(loadData());
+    if (!movies.length) {
+      getMovies();
+    }
   })
 
   return (
     <div className={styles['home-page']}>
-      <Header/>
+      <Header/> 
       <Main className={styles.stretch} movies={movies}/>
       <Footer/>
     </div>

@@ -1,11 +1,17 @@
 import React, { useCallback } from "react";
+import { useDispatch } from 'react-redux';
+import { addMovieAction } from '../../../../store/movies/movies.actions';
 
 import Modal from 'react-modal';
 import AddEditMovie from '../../../common/modals/AddEditMovie/AddEditMovie';
 
+import { IMovie } from '../../../../models/common/interfaces/IMovie';
+
 import { intialValueMovie } from '../../../../services/data/initialValueMovie';
 
 import styles from './AddMovieButton.module.scss';
+
+
 
 
 
@@ -31,6 +37,16 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
     [],
   );
 
+  const dispatch = useDispatch();
+
+  const addMovie = React.useCallback(
+    (movie: IMovie)=> { 
+      dispatch(addMovieAction(movie));
+      closeModal();
+    },
+    [dispatch, closeModal]
+  );
+
   return (
     <>
         <button className={`${styles['add-movie-button']} ${className}`}
@@ -44,7 +60,7 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
           overlayClassName="react-overlay"
           contentLabel="Example Modal"
         >
-          <AddEditMovie movie={intialValueMovie()} onClick={closeModal}/>
+          <AddEditMovie movie={intialValueMovie()} onClickCloseButton={closeModal} onSubmit={addMovie}/>
       </Modal>
     </>
   );

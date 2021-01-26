@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
 
 import { IMovie } from '../../../../../models/common/interfaces/IMovie';
 
@@ -9,8 +10,11 @@ import DeleteMovie from '../../../modals/DeleteMovie/DeleteMovieMovie';
 
 import { getYear } from '../../../../../services/helpers/getYear';
 import { intialValueMovie } from '../../../../../services/data/initialValueMovie';
+import { updateMovieAction, deleteMovieAction } from '../../../../../store/movies/movies.actions';
 
 import styles from './MovieCard.module.scss';
+
+
 
 
 
@@ -21,7 +25,6 @@ export interface MovieCardProps {
 }
 
 export function MovieCard({ className, movie = intialValueMovie()}: MovieCardProps): JSX.Element {
-
   const [isEditMovieModaOpen, setIsEditMovieOpen] = React.useState(false);
   const [isDeleteMovieModalOpen, setIsDeleteMovieOpen] = React.useState(false);
 
@@ -30,6 +33,24 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
 
   const openDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(true); }, []);
   const closeDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(false); }, []);
+
+  const dispatch = useDispatch();
+
+  const updateMovie = React.useCallback(
+    (movie: IMovie)=> { 
+      dispatch(updateMovieAction(movie));
+      closeEditMovieModal();
+    },
+    [dispatch, closeEditMovieModal]
+  );
+
+  const deleteMovie = React.useCallback(
+    (id: number | undefined)=> { 
+      dispatch(deleteMovieAction(id));
+      closeDeleteMovieModal();
+    },
+    [dispatch, closeDeleteMovieModal]
+  );
 
   return (
     <>
@@ -54,7 +75,7 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
       overlayClassName="react-overlay"
       contentLabel="Example Modal"
     >
-      <AddEditMovie movie={movie} onClick={closeEditMovieModal}/>
+      <AddEditMovie movie={movie} onClickCloseButton={closeEditMovieModal} onSubmit={updateMovie}/>
     </Modal>
     <Modal
       isOpen={isDeleteMovieModalOpen}
@@ -64,7 +85,7 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
       contentLabel="Example Modal"
     >
 
-      <DeleteMovie id='' onClick={closeDeleteMovieModal}/>
+      <DeleteMovie id={movie.id} onClick={closeDeleteMovieModal} onConfirm={deleteMovie}/>
     </Modal>
   </>
   );

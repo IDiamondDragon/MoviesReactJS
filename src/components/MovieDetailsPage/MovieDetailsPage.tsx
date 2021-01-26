@@ -1,22 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Header from './Header/Header';
 import Main from '../common/Main/Main';
 import Footer from '../common/Footer/Footer';
 
-import { IMovie } from '../../models/common/interfaces/IMovie';
-import { loadData } from '../../services/api/loadData';
 import { useComponentDidMount } from '../../services/hooks/useComponentDidMount';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMoviesAction } from '../../store/movies/movies.actions';
+import { getMoviesSelector } from '../../store/movies/movies.selectors';
 
 import styles from './MovieDetailsPage.module.scss';
 
 
-function MovieDetailsPage(): JSX.Element {
 
-  const [movies, setMovies] = useState<IMovie[]>([]);
+function MovieDetailsPage(): JSX.Element {
+  const dispatch = useDispatch();
+
+  const getMovies = React.useCallback(
+    ()=> dispatch(getMoviesAction()),
+    [dispatch]
+  );
+
+  const movies = useSelector(getMoviesSelector);
 
   useComponentDidMount(() => {
-    setMovies(loadData());
+    if (!movies.length) {
+      getMovies();
+    }
   })
 
   return (

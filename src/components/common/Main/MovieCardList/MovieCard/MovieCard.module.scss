@@ -28,6 +28,10 @@
 
    &__title {
       font-size: 17px;
+      width: 230px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
    }
 
    &__release-date {
@@ -38,10 +42,14 @@
    }
 
    &__geners {
+      max-width: 310px;
       margin-top: 3px;
       font-size: 15px;
       font-weight: 700;
       color: $emperor;  
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
    }
 }
 
