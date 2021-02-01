@@ -15,12 +15,18 @@ export interface DropdownMenuProps {
 }
 
 export function DropdownMenu({ className, onOpenEditMovieModal, onOpenDeleteMovieModal}: DropdownMenuProps): JSX.Element {
+  const stopPropogation = (e: React.MouseEvent): void => {
+    e.stopPropagation();
+  }
+  
   return (
-    <Menu className={styles['menu']}
-      menuButton={<div className={`${styles['menu__tree-dots']} ${className}`} ></div>}>
-      <MenuItem className={styles['menu__item']} onClick={onOpenEditMovieModal}>Edit</MenuItem>
-      <MenuItem className={styles['menu__item']} onClick={onOpenDeleteMovieModal}>Delete</MenuItem>
-    </Menu>
+    <div className="stop-propogation-menu-click-event" onClick={stopPropogation}>
+      <Menu className={styles['menu']}
+        menuButton={<div className={`${styles['menu__tree-dots']} ${className}`} ></div>}>
+        <MenuItem className={styles['menu__item']} onClick={onOpenEditMovieModal}>Edit</MenuItem>
+        <MenuItem className={styles['menu__item']} onClick={onOpenDeleteMovieModal}>Delete</MenuItem>
+      </Menu>
+    </div>
   );
 }
 
