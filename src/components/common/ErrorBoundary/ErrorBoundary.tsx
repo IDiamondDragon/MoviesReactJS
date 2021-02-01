@@ -29,7 +29,7 @@ export class ErrorBoundary extends React.Component<Props, ErrorState> {
     if (this.state.errorInfo) {
       // Error path
       return (
-        <div style={{fontSize: '30px', textAlign: 'center', marginTop: '30px', color: 'black'}}>
+        <div className='loading-indicator'>
           <h2>Something went wrong.</h2>
           <details style={{ whiteSpace: 'pre-wrap' }}>
             { this.state?.error?.toString() }

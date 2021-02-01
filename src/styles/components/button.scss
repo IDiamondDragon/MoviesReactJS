@@ -13,4 +13,8 @@
   &:hover {
      background: rgba(221, 73, 87, 1);
   }
+
+  &:disabled {
+    background: rgba(221, 73, 87, 0.5);
+  }
 }

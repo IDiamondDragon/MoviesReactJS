@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import Header from './Header/Header';
 import Main from '../common/Main/Main';
@@ -16,7 +16,7 @@ import styles from './MovieDetailsPage.module.scss';
 function MovieDetailsPage(): JSX.Element {
   const dispatch = useDispatch();
 
-  const getMovies = React.useCallback(
+  const getMovies = useCallback(
     ()=> dispatch(getMoviesAction()),
     [dispatch]
   );

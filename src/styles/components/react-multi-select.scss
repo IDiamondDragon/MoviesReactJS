@@ -1,6 +1,11 @@
 @import "../supporting/colors";
 
 .react-multi-select-container {
+  &--error {
+    border: 1px solid $carnation;
+    border-radius: 5px;
+  }
+
   .react-multi-select {
     &__control {
       height: 55px;

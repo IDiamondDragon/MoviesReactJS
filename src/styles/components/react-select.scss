@@ -8,6 +8,7 @@
       background-color: $mineShaft;
       border: none;
       outline: none;
+      cursor: pointer;
 
       &--is-focused {
         border: none !important;
