@@ -38,7 +38,7 @@ function HomePage(): JSX.Element {
   useComponentDidMount(() => {
     if (!movies.length) {
       if (!search) {
-        // getMovies();
+        // getMovies(); wont' remove
       } else {
         setFilters({ search });
       }
