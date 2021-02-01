@@ -3,7 +3,6 @@ import { IMovie } from '../../models/common/interfaces/IMovie'
 
 
 export function intialValueMovie(): IMovie {
-
   return  {
     id: 0,
     title: 'None',

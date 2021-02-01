@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
 import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useQuery } from '../../../../../services/hooks/useQuery';
 
 import { IMovie } from '../../../../../models/common/interfaces/IMovie';
 
@@ -13,7 +15,6 @@ import { intialValueMovie } from '../../../../../services/data/initialValueMovie
 import { updateMovieAction, deleteMovieAction } from '../../../../../store/movies/movies.actions';
 
 import styles from './MovieCard.module.scss';
-
 
 export interface MovieCardProps {
   movie: IMovie;
@@ -31,13 +32,15 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
   const closeDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(false); }, []);
 
   const dispatch = useDispatch();
+  const query = useQuery();
+  const history = useHistory();
 
   const updateMovie = useCallback(
     (movie: IMovie)=> { 
       dispatch(updateMovieAction(movie));
       // closeEditMovieModal();
     },
-    [dispatch, closeEditMovieModal]
+    [dispatch]
   );
 
   const deleteMovie = useCallback(
@@ -48,9 +51,18 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
     [dispatch, closeDeleteMovieModal]
   );
 
+  const redirectToMovieDetailsPage = useCallback(
+    (): void => { 
+
+      // history.push({pathname: `/film/${movie.id}`, search: query.toString()}); // won't remove
+      history.push({pathname: `/film/${movie.id}`});
+    },
+    [history, movie.id]
+  );
+
   return (
     <>
-    <div className={`${styles['movie-card']} ${className}`}>
+    <div className={`${styles['movie-card']} ${className}`} onClick={redirectToMovieDetailsPage}>
       <figure>
         <img className={styles['movie-card__image']} src={movie.posterPath}/>
       </figure>

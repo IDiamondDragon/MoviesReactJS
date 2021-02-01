@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import Modal from 'react-modal';
 import { Provider } from "react-redux";
 
+import  "./styles/site.scss";
+
 import App from './components/App';
 
 import { store } from './store/store';
 
-import  "./styles/site.scss";
 import "./services/api/interceptors/errorsInterceptor"
 
 

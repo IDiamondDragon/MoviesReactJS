@@ -1,6 +1,7 @@
 declare namespace DeleteMovieModuleScssNamespace {
   export interface IDeleteMovieModuleScss {
     button: string;
+    "button--without-background": string;
     "delete-movie": string;
     "delete-movie__confirm": string;
   }

@@ -12,19 +12,12 @@
   }
 
   &__last {
-    margin-bottom: 94px !important;
+    margin-bottom: 94px;
   }
 
   &__reset {
     margin-left: auto;
     margin-right: 16px;
-    color: $carnation !important;
-    background-color: transparent !important;
-    border: 1px solid $carnation !important;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1) !important;
-    }
   }
 }
     

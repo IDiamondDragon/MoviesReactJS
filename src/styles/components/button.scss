@@ -17,4 +17,14 @@
   &:disabled {
     background: rgba(221, 73, 87, 0.5);
   }
+
+  &--without-background {
+    color: $carnation;
+    background-color: transparent;
+    border: 1px solid $carnation;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }

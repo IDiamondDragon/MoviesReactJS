@@ -22,8 +22,9 @@
   }
 
   &__title {
-      font-size: 44px;
-      color: $white;
+    max-width: 406px;
+    font-size: 44px;
+    color: $white;
   }
 
   &__tagline {

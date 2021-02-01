@@ -1,20 +1,35 @@
 import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from './Header/Header';
 import Main from '../common/Main/Main';
 import Footer from '../common/Footer/Footer';
 
+import { useQuery } from '../../services/hooks/useQuery';
 import { useComponentDidMount } from '../../services/hooks/useComponentDidMount';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesAction } from '../../store/movies/movies.actions';
+
+import { IFilters } from '../../models/common/interfaces/IFilters';
+
 import { getMoviesSelector } from '../../store/movies/movies.selectors';
+import { getMoviesAction } from '../../store/movies/movies.actions';
+import { setFiltersAction } from '../../store/filters/filters.actions';
 
 import styles from './MovieDetailsPage.module.scss';
 
 
 
+
+
 function MovieDetailsPage(): JSX.Element {
+  const query = useQuery();
+  const search = query.get('search');
+
   const dispatch = useDispatch();
+
+  const setFilters = useCallback(
+    (filters: IFilters)=> dispatch(setFiltersAction(filters)),
+    [dispatch]
+  );
 
   const getMovies = useCallback(
     ()=> dispatch(getMoviesAction()),
@@ -25,7 +40,11 @@ function MovieDetailsPage(): JSX.Element {
 
   useComponentDidMount(() => {
     if (!movies.length) {
-      getMovies();
+      if (!search) {
+        // getMovies();// wont remove
+      } else {
+        setFilters({ search });
+      }
     }
   })
 
