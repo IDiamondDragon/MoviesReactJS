@@ -56,7 +56,9 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
   return (
     <div className={`${styles['add-edit-movie']} ${props.className} modal`}> 
       <div className="modal__title">{ props.movie.id ? 'EDIT MOVIE' : 'ADD MOVIE'}</div>
-      <div className="modal__cross" onClick={props.onClickCloseButton}></div>
+      <div data-testid="close" 
+           className="modal__cross" 
+           onClick={props.onClickCloseButton}></div>
       <Formik
         enableReinitialize={true}
         initialValues={getIntialValue()}
@@ -64,7 +66,9 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
         onSubmit={submit}
       >
       {(formik: FormikProps<IMovie>) => (
-        <Form className={`${styles['add-edit-movie-form']} formLayout`} onSubmit={formik.handleSubmit}>
+        <Form data-testid="add-edit-movie-form"
+              className={`${styles['add-edit-movie-form']} formLayout`} 
+              onSubmit={formik.handleSubmit}>
           { 
             formik.values.id != 0 ?
               <div className="field">
@@ -75,31 +79,37 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
               : null
           }
           <InputField   
+              data-testid="title"
               type="text"
               placeholder="Title here" 
               name="title"
               title="TITLE" />        
           <InputField   
+              data-testid="releaseDate"
               type="date"
               placeholder="Selecte Date" 
               name="releaseDate"
               title="RELEASE DATE" />   
           <InputField   
+              data-testid="posterPath"
               type="text"
               placeholder="Movie URL here" 
               name="posterPath"
               title="MOVIE URL" />   
           <SelectField
+              data-testid="genres"
               placeholder="Overview here" 
               name="genres"
               title="GENRE"
           />
           <InputField   
+              data-testid="overview"
               type="text"
               placeholder="Overview here" 
               name="overview"
               title="OVERVIEW" />   
-          <InputField   
+          <InputField  
+              data-testid="runtime" 
               type="text"
               placeholder="Runtime here" 
               name="runtime"
@@ -110,7 +120,8 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
                     onClick={formik.handleReset}>
                       RESET
             </button>
-            <button type="submit"
+            <button data-testid="submit" 
+                    type="submit"
                     className={`field__button ${styles['add-edit-movie-form__submit']}`}
                     disabled={formik.isSubmitting || !formik.isValid}>
               SUBMIT

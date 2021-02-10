@@ -2,11 +2,9 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Banner from '../../common/Banner/Baner';
+import Baner from '../../common/Banner/Baner';
 import MovieDetaislPanel from './MovieDetailsPanel/MovieDetailsPanel';
 import SearchIcon from './SearchIcon/SearchIcon';
-
-import { IMovie } from '../../../models/common/interfaces/IMovie';
 import { RootState } from '../../../store/store';
 
 import { getMovieByIdSelector } from '../../../store/movies/movies.selectors';
@@ -28,7 +26,7 @@ export function Header(): JSX.Element {
 
   return (
     <div className={styles.header}>
-      <Banner className={styles.header__baner}/>
+      <Baner className={styles.header__baner}/>
       <SearchIcon className={styles['header__search-icon']}/>
       <MovieDetaislPanel movie={movie} className={styles.header__panel}/>
     </div>

@@ -43,6 +43,7 @@ export function SelectField(props: ArrayTextFieldProps): JSX.Element {
             closeMenuOnSelect={false}
             className={`react-multi-select-container ${errorSelect}`}
             classNamePrefix="react-multi-select"
+            name={props.name}
             isMulti
             value={selectedGeners}
             options={allGeners}
