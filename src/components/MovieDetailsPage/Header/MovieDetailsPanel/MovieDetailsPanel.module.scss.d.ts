@@ -1,6 +1,7 @@
 declare namespace MovieDetailsPanelModuleScssNamespace {
   export interface IMovieDetailsPanelModuleScss {
     button: string;
+    "button--without-background": string;
     input: string;
     "movie-details-panel": string;
     "movie-details__overview": string;

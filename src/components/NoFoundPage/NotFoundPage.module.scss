@@ -1,0 +1,40 @@
+@import "../../styles/supporting/colors";
+
+.not-found-page {
+  display: flex;
+  margin: auto;
+  height: 100%;
+  flex-direction: column;
+  background-color: $mineShaft; 
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-color: $mineShaft; 
+}
+
+.message {
+  margin-top: 40px;
+  font-size: 40px;
+  color: $white;
+  letter-spacing: 1.2px;
+}
+
+.image404 {
+  margin-top: 25px;
+  height: 245px;
+  width: 614px;
+  background-image: url("../../assets/images/App/NotFoundPage/image404.png"); 
+  background-color: $mineShaft; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.go-back-to-home-button {
+  margin-top: 70px;
+  margin-bottom: 30px;
+  width: 260px;
+}

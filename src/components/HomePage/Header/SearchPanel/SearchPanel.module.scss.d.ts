@@ -1,6 +1,7 @@
 declare namespace SearchPanelModuleScssNamespace {
   export interface ISearchPanelModuleScss {
     button: string;
+    "button--without-background": string;
     input: string;
     search: string;
     "search-panel": string;

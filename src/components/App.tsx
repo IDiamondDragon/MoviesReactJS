@@ -1,12 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 import ErrorBoundary from './common/ErrorBoundary/ErrorBoundary';
-import HomePage from './HomePage/HomePage';
-// import MovieDetailsPage from './MovieDetailsPage/MovieDetailsPage';
+
 
 import styles from './App.module.scss';
 
 
+const HomePage = React.lazy(() => import('./HomePage/HomePage'));
+const MovieDetailsPage = React.lazy(() => import('./MovieDetailsPage/MovieDetailsPage'));
+const NoFoundPage = React.lazy(() => import('./NoFoundPage/NotFoundPage'));
 
 export class App extends Component {
   render(): JSX.Element {
@@ -14,8 +17,32 @@ export class App extends Component {
       <div className={styles.app}>
         <React.StrictMode>
           <ErrorBoundary>
-            {/* <MovieDetailsPage/> */}
-            <HomePage/>
+            <BrowserRouter>
+              <Switch>
+
+                  <Route exact path='/search'>
+                    <Suspense fallback={<div>loading...</div>} >
+                      <HomePage/>
+                    </Suspense>
+                  </Route>
+
+                  <Route exact path='/film/:id'>
+                    <Suspense fallback={<div>loading...</div>} >
+                      <MovieDetailsPage/>
+                    </Suspense>
+                  </Route>
+
+                  <Route exact path='/' 
+                          render={() => <Redirect to={"/search"}/>}/>
+
+                  <Route path='*'>
+                    <Suspense fallback={<div>loading...</div>} >
+                      <NoFoundPage/>
+                    </Suspense>
+                  </Route>
+
+              </Switch>
+            </BrowserRouter>
           </ErrorBoundary>
         </React.StrictMode>
       </div>

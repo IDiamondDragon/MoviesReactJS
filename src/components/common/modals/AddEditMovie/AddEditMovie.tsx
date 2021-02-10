@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Form, FormikProps, Formik } from 'formik';
 import InputField from '../../FormComponents/InputField';
 
@@ -22,15 +22,36 @@ export interface AddEditMovieState {
 }
 
 function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
-  const getIntialValue = (): IMovie => {
-    const movie = {...intialValueMovie(), ...props.movie, genres: [...props.movie.genres]};
+  const getIntialValue = useCallback(
+    
+    (): IMovie => {
+      const movie = {...intialValueMovie(), ...props.movie, genres: [...props.movie.genres]};
+  
+      if (!movie.runtime) {
+        movie.runtime = 0;
+      }
+  
+      return movie;
+    },
+    [props.movie]
+  );
 
-    if (!movie.runtime) {
-      movie.runtime = 0;
-    }
+  const submit = useCallback(
 
-    return movie;
-  }
+    (values, actions): void => {
+      const movie = values;
+
+      if (!movie.tagline) {
+        movie.tagline = movie.title;
+      }
+  
+      movie.runtime = Number(movie.runtime);
+  
+      props.onSubmit(movie);
+      actions.setSubmitting(false);
+    },
+    [props]
+  );
 
   return (
     <div className={`${styles['add-edit-movie']} ${props.className} modal`}> 
@@ -40,18 +61,7 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
         enableReinitialize={true}
         initialValues={getIntialValue()}
         validationSchema={MovieValidationSchema}
-        onSubmit={(values, actions) => {
-          const movie = values;
-
-          if (!movie.tagline) {
-            movie.tagline = movie.title;
-          }
-      
-          movie.runtime = Number(movie.runtime);
-      
-          props.onSubmit(movie);
-          actions.setSubmitting(false);
-        }}
+        onSubmit={submit}
       >
       {(formik: FormikProps<IMovie>) => (
         <Form className={`${styles['add-edit-movie-form']} formLayout`} onSubmit={formik.handleSubmit}>
@@ -96,7 +106,7 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
               title="RUNTIME" />  
           <div className={styles['add-edit-movie-form__buttons']}>
             <button type="button"
-                    className={`field__button ${styles['add-edit-movie-form__reset']}`}
+                    className={`field__button button--without-background ${styles['add-edit-movie-form__reset']}`}
                     onClick={formik.handleReset}>
                       RESET
             </button>

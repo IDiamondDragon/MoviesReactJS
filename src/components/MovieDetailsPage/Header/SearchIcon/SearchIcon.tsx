@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useRedirectToSearchPage } from '../../../../services/hooks/useRedirectToSearchPage';
+
 import styles from './SearchIcon.module.scss';
 
 
@@ -8,10 +10,10 @@ interface SearchIconProps {
 }
 
 export function SearchIcon({ className }: SearchIconProps): JSX.Element {
+  const redirectToSearchPage = useRedirectToSearchPage();
 
   return (
-    <i className={`${styles['search-icon']} ${className}`}>
-    </i>
+    <i className={`${styles['search-icon']} ${className}`} onClick={redirectToSearchPage}/>
   );
 }
 

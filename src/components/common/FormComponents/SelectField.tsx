@@ -1,8 +1,8 @@
-import React from "react";
-import { FieldHookConfig, useField, Field } from 'formik';
-import { useMemo } from 'react';
-import { genersData } from '../../../assets/data/geners';
+import React, { useCallback, useMemo } from "react";
+import { FieldHookConfig, useField } from 'formik';
 import Select, { ActionMeta, ValueType, OptionTypeBase } from 'react-select';
+
+import { genersData } from '../../../assets/data/geners';
 
 type ArrayTextFieldProps = FieldHookConfig<string[]> & {
 	title: string
@@ -21,13 +21,18 @@ export function SelectField(props: ArrayTextFieldProps): JSX.Element {
     allGeners.filter(gener => meta.value.find((valueGenerFromCombobox) => gener.value === valueGenerFromCombobox)), 
     [allGeners, meta.value])
 
-  const handleSelectChange = (genersSelect: ValueType<OptionTypeBase, boolean>, actionMeta: ActionMeta<OptionTypeBase>): void => {
-    let changedGeners = genersSelect?.map(gener => gener.value);
-    changedGeners = changedGeners ? changedGeners : [];
-
-    helpers.setValue(changedGeners, true);
-    helpers.setTouched(true);
-  }
+    const handleSelectChange = useCallback(
+    
+      (genersSelect: ValueType<OptionTypeBase, boolean>, actionMeta: ActionMeta<OptionTypeBase>): void => {
+        let changedGeners = genersSelect?.map(gener => gener.value);
+        changedGeners = changedGeners ? changedGeners : [];
+    
+        helpers.setValue(changedGeners, true);
+        helpers.setTouched(true);
+      },
+      
+      [helpers]
+    );
 
   return (
     <>

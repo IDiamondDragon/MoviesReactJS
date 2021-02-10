@@ -12,6 +12,7 @@ export interface IFiltersState {
 export const INITIAL_STATE: IFiltersState = {
   filters: {
     search: undefined,
+    searchBy: 'title',
     sortBy: 'release_date',
     sortOrder: 'desc',
     filter: undefined
