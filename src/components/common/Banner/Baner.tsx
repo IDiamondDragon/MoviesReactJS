@@ -3,15 +3,15 @@ import React from "react";
 import { useRedirectToSearchPage } from '../../../services/hooks/useRedirectToSearchPage';
 
 import baner from "../../../assets/images/shared/Banner/netflix.png";
-import styles from './Banner.module.scss';
+import styles from './Baner.module.scss';
 
 
 
-export interface BannerProps {
+export interface BanerProps {
   className: string
 }
 
-export function Banner({ className }: BannerProps): JSX.Element {
+export function Baner({ className }: BanerProps): JSX.Element {
   const redirectToSearchPage = useRedirectToSearchPage();
   
   return (
@@ -19,4 +19,4 @@ export function Banner({ className }: BannerProps): JSX.Element {
   );
 }
 
-export default Banner
+export default Baner

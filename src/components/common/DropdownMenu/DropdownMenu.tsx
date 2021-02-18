@@ -21,7 +21,7 @@ export function DropdownMenu({ className, onOpenEditMovieModal, onOpenDeleteMovi
   
   return (
     <div className="stop-propogation-menu-click-event" onClick={stopPropogation}>
-      <Menu className={styles['menu']}
+      <Menu className={styles['menu']}  
         menuButton={<div className={`${styles['menu__tree-dots']} ${className}`} ></div>}>
         <MenuItem className={styles['menu__item']} onClick={onOpenEditMovieModal}>Edit</MenuItem>
         <MenuItem className={styles['menu__item']} onClick={onOpenDeleteMovieModal}>Delete</MenuItem>

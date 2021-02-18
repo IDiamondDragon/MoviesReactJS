@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Baner renders correctly 1`] = `
+<DocumentFragment>
+  <img
+    class="baner "
+    src="test-file-stub"
+  />
+</DocumentFragment>
+`;

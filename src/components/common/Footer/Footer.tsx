@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from '../../common/Banner/Baner';
+import Baner from '../../common/Banner/Baner';
 
 import styles from './Footer.module.scss';
 
@@ -8,7 +8,7 @@ import styles from './Footer.module.scss';
 export function Footer(): JSX.Element {
   return (
     <div className={styles.footer}>
-      <Banner className={styles.footer__baner}/>
+      <Baner className={styles.footer__baner}/>
     </div>
   );
 }

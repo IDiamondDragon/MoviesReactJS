@@ -4,16 +4,11 @@ import { addMovieAction } from '../../../../store/movies/movies.actions';
 
 import Modal from 'react-modal';
 import AddEditMovie from '../../../common/modals/AddEditMovie/AddEditMovie';
-
 import { IMovie } from '../../../../models/common/interfaces/IMovie';
 
 import { intialValueMovie } from '../../../../services/data/initialValueMovie';
 
 import styles from './AddMovieButton.module.scss';
-
-
-
-
 
 
 interface AddMovieButtonProps {

@@ -24,7 +24,7 @@ const config: webpack.Configuration = {
       // config for tsx
       {
         test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /__tests__/, /\.test.(tsx|ts)?$/], // need to check
         use: {
           loader: "babel-loader",
           options: {

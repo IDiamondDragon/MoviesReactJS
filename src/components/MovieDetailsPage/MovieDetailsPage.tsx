@@ -17,9 +17,6 @@ import { setFiltersAction } from '../../store/filters/filters.actions';
 import styles from './MovieDetailsPage.module.scss';
 
 
-
-
-
 function MovieDetailsPage(): JSX.Element {
   const query = useQuery();
   const search = query.get('search');
