@@ -11,6 +11,10 @@ const config: webpack.Configuration = merge(common, {
       chunks: 'all',
     }
   },
+  output: {
+    filename: 'assets/js/[name].[chunkhash].bundle.js'
+  }
 });
+
 
 export default config;

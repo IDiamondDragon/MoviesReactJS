@@ -21,20 +21,21 @@ export function SearchPanel({ className }: SearchPanelProps): JSX.Element {
   const [search, setSearch] = useState('');
 
   const query = useQuery();
-  const searchQuery = query.get('search');
+  let searchQuery = query.get('search');
+  searchQuery = decodeURI(searchQuery ? searchQuery : '');
 
   const history = useHistory();
   const dispatch = useDispatch();
   
   useComponentDidMount(() => {
-    if (searchQuery) {
-      setSearch(searchQuery);
+    if (!!searchQuery) {
+      setSearch(decodeURI(searchQuery));
     } 
   })
 
   const handleInputChange  = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setSearch(event.target.value);
+    setSearch(decodeURI(event.target.value));
   }
 
 
@@ -48,7 +49,7 @@ export function SearchPanel({ className }: SearchPanelProps): JSX.Element {
     if (!search) {
       query.delete('search');
     } else {
-      query.set('search', search);
+      query.set('search', encodeURI(search));
     }
     
     history.push({search: query.toString()});

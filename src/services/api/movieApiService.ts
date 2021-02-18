@@ -11,30 +11,46 @@ import { convertMovieClientToMovieServerFormatData } from '../helpers/convertMov
 import { IFilters } from '../../models/common/interfaces/IFilters';
 
 export class MovieApiService {
-  // static getMovies(sortByField: string, filterByGenre: string): Promise<IMovie[]>  {
-  //   const config: AxiosRequestConfig = { params: {sortBy: sortByField, sortOrder: 'asc', filter: filterByGenre}};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static pendingRequests:  Promise<any>[] = [];
+  
+  
   static getMovies(filters: IFilters): Promise<IMovie[]>  {
     const config: AxiosRequestConfig = { params: filters};
 
-    return axios.get<IMoviesGetResponse>(`${API_PATHS.movies}`, config).then( (response) => { 
+    const request = axios.get<IMoviesGetResponse>(`${API_PATHS.movies}`, config).then( (response) => { 
       return response.data.data.map(movieData => {
         return convertMovieServerToMovieClientFormatData(movieData);
       }
     ) 
     });
+
+    this.pendingRequests.push(request);
+
+    return request;
   }
 
   static addMovie(movie: IMovie): Promise<IMovie>  {
     const serverMovieFormatData = convertMovieClientToMovieServerFormatData(movie);
     delete serverMovieFormatData.id;
     
-    return axios.post<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
+    const request = axios.post<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
       return convertMovieServerToMovieClientFormatData(response.data)
     });
+
+    this.pendingRequests.push(request);
+
+    return request;
   }
 
   static updateMovie(movie: IMovie): Promise<IMovie>  {
     const serverMovieFormatData = convertMovieClientToMovieServerFormatData(movie);
+
+    const request = axios.post<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
+      return convertMovieServerToMovieClientFormatData(response.data)
+    }); 
+    
+    this.pendingRequests.push(request);
 
     return axios.put<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
       return convertMovieServerToMovieClientFormatData(response.data)
@@ -42,6 +58,11 @@ export class MovieApiService {
   }
 
   static deleteMovie(id: number | undefined): Promise<number | undefined>  {
-    return axios.delete(`${API_PATHS.movies}/${id}`).then(() => id);
+
+    const request = axios.delete(`${API_PATHS.movies}/${id}`).then(() => id);
+    
+    this.pendingRequests.push(request);
+
+    return request;
   }
 }

@@ -3,21 +3,23 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import webpack from "webpack";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config: webpack.Configuration = {
   entry: {
     app: "./src/index.tsx",
   },
   output: {
-    filename: 'js/[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'), // base path where to send compiled assets
+    // filename: 'assets/js/[name].bundle.js',
+    path: path.resolve(__dirname, 'dist/client'), // base path where to send compiled assets
     publicPath: '/' // base path where referenced files will be look for
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    // alias: {
-    //   '@': path.resolve(__dirname, 'src') // shortcut to reference src folder from anywhere
-    // }
+    alias: {
+      'src': path.resolve(__dirname, 'src') // shortcut to reference src folder from anywhere
+    }
   },
   module: {
     rules: [
@@ -33,6 +35,7 @@ const config: webpack.Configuration = {
               "@babel/preset-react",
               "@babel/preset-typescript",
             ],
+            plugins: ["transform-class-properties"]
           },
         },
       },
@@ -43,7 +46,10 @@ const config: webpack.Configuration = {
         },
         include: /\.module\.scss$/,
         use: [
-          'style-loader',
+          // 'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           '@teamsupercell/typings-for-css-modules-loader',
           {
             loader: 'css-loader',
@@ -59,7 +65,7 @@ const config: webpack.Configuration = {
                 // localIdentHashPrefix: "my-custom-hash",
                 // namedExport: true,
                 // exportLocalsConvention: "camelCase",
-                // exportOnlyLocals: false,
+                //exportOnlyLocals: true,
               },
             },
           },
@@ -71,7 +77,10 @@ const config: webpack.Configuration = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          // 'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           'css-loader',
           'sass-loader'
         ],
@@ -83,7 +92,7 @@ const config: webpack.Configuration = {
           {
             loader: 'file-loader',
             options: {
-              outputPath: 'images',
+              outputPath: 'assets/images',
             }
           }
         ],
@@ -107,20 +116,21 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ["css/*.*", "js/*.*", "fonts/*.*", "images/*.*"]
+      cleanOnceBeforeBuildPatterns: ["assets/*.*"]
     }),
     new HtmlWebpackPlugin({ // plugin for inserting scripts automatically into html
       template: "./src/index.html",
       filename: "index.html",
-      title: "Movies"
+      title: "Movies",
+      excludeChunks: [ 'main' ]
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false
     }),
-    // new MiniCssExtractPlugin({ // plugin for controlling how compiled css will be outputted and named
-    //   filename: "css/[name].css",
-    //   chunkFilename: "css/[id].css"
-    // })
+    new MiniCssExtractPlugin({ // plugin for controlling how compiled css will be outputted and named
+      filename: "assets/css/[name].css",
+      chunkFilename: "assets/css/[id].css"
+    })
   ]
 };
 

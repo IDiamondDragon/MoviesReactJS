@@ -19,7 +19,7 @@ import styles from './HomePage.module.scss';
 
 function HomePage(): JSX.Element {
   const query = useQuery();
-  const search = query.get('search');
+  const search = decodeURI(query.get('search') as string);
 
   const dispatch = useDispatch();
 

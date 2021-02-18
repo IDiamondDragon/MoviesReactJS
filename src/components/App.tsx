@@ -1,48 +1,63 @@
-import React, { Component, Suspense } from "react";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import React from "react";
+import { Redirect, Route, Switch} from "react-router-dom";
 
 import ErrorBoundary from './common/ErrorBoundary/ErrorBoundary';
-
+import HomePage from './HomePage/HomePage';
+import MovieDetailsPage from './MovieDetailsPage/MovieDetailsPage';
+import NoFoundPage from './NoFoundPage/NotFoundPage';
 
 import styles from './App.module.scss';
+import { withSuspense } from '../hoc/routing/withSuspense';
 
 
-const HomePage = React.lazy(() => import('./HomePage/HomePage'));
-const MovieDetailsPage = React.lazy(() => import('./MovieDetailsPage/MovieDetailsPage'));
-const NoFoundPage = React.lazy(() => import('./NoFoundPage/NotFoundPage'));
+interface StateProps {
+  lazyLoaded: boolean;
+}
 
-export class App extends Component {
+export class App extends React.Component<StateProps, unknown>  {
+  constructor(public props: StateProps) {
+    super(props);
+  }
+
   render(): JSX.Element {
+    let HomePageSuspense;
+    let MovieDetailsPageSuspense;
+    let NoFoundPageSuspense;
+
+    if (this.props.lazyLoaded) {
+      HomePageSuspense = withSuspense(React.lazy(() => import('./HomePage/HomePage')));
+      MovieDetailsPageSuspense = withSuspense(React.lazy(() => import('./MovieDetailsPage/MovieDetailsPage')));
+      NoFoundPageSuspense = withSuspense(React.lazy(() => import('./NoFoundPage/NotFoundPage')));
+    } else {
+      HomePageSuspense = HomePage;
+      MovieDetailsPageSuspense = MovieDetailsPage;
+      NoFoundPageSuspense = NoFoundPage;
+    }
+
+
     return (
       <div className={styles.app}>
         <React.StrictMode>
           <ErrorBoundary>
-            <BrowserRouter>
+            
               <Switch>
 
                   <Route exact path='/search'>
-                    <Suspense fallback={<div>loading...</div>} >
-                      <HomePage/>
-                    </Suspense>
+                      <HomePageSuspense/>
                   </Route>
 
                   <Route exact path='/film/:id'>
-                    <Suspense fallback={<div>loading...</div>} >
-                      <MovieDetailsPage/>
-                    </Suspense>
+                      <MovieDetailsPageSuspense/>
                   </Route>
 
                   <Route exact path='/' 
                           render={() => <Redirect to={"/search"}/>}/>
 
                   <Route path='*'>
-                    <Suspense fallback={<div>loading...</div>} >
-                      <NoFoundPage/>
-                    </Suspense>
+                      <NoFoundPageSuspense/>
                   </Route>
 
               </Switch>
-            </BrowserRouter>
           </ErrorBoundary>
         </React.StrictMode>
       </div>
