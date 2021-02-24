@@ -15,7 +15,7 @@ jest.mock('../../../services/hooks/useRedirectToSearchPage', () => {
 describe('Baner', () => {
 
   test("renders correctly", () => {
-      const { asFragment } = render(<Baner className=""/>);
+      const { asFragment } = render(<Baner className="" />);
 
       expect(asFragment()).toMatchSnapshot();
   })

@@ -24,7 +24,7 @@ export function Main({ className, movies }: MainProps): JSX.Element {
 
   return (
     <div className={`${styles['main']} ${className}`}>
-      <FiltersPanel/>
+      <FiltersPanel />
       {
         isLoading 
           ?         
@@ -33,12 +33,12 @@ export function Main({ className, movies }: MainProps): JSX.Element {
             </div>
           :
             <MovieCardListBoundary>
-              <CounterMovies/>
-              <MovieCardList movies={movies}/>
+              <CounterMovies />
+              <MovieCardList movies={movies} />
             </MovieCardListBoundary>
       }
     </div>
   );
 }
 
-export default Main
+export default React.memo(Main)

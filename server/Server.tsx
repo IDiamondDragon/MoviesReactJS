@@ -37,7 +37,7 @@ server.get('*', async (req, res) => { {}
       const app = ReactDOMServer.renderToString(   
         <Provider store={store}>
           <StaticRouter location={req.url} context={context}>
-            <App lazyLoaded={false}/>
+            <App lazyLoaded={false} />
           </StaticRouter>
         </Provider>     
       );

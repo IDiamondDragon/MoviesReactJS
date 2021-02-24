@@ -30,4 +30,4 @@ export function DropdownMenu({ className, onOpenEditMovieModal, onOpenDeleteMovi
   );
 }
 
-export default DropdownMenu
+export default React.memo(DropdownMenu);

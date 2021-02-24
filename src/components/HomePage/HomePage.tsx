@@ -19,7 +19,8 @@ import styles from './HomePage.module.scss';
 
 function HomePage(): JSX.Element {
   const query = useQuery();
-  const search = decodeURI(query.get('search') as string);
+  let search = query.get('search');
+  search = decodeURI(search ? search : '');
 
   const dispatch = useDispatch();
 
@@ -48,7 +49,7 @@ function HomePage(): JSX.Element {
   return (
     <div className={styles['home-page']}>
       <Header/> 
-      <Main className={styles.stretch} movies={movies}/>
+      <Main className={styles.stretch} movies={movies} />
       <Footer/>
     </div>
   );

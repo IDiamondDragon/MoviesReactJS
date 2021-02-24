@@ -16,6 +16,14 @@ export class ErrorBoundary extends React.Component<Props, ErrorState> {
     this.state = { error: null, errorInfo: null };
   }
   
+  shouldComponentUpdate(nextProps: Props, nextState: ErrorState): boolean {
+    if (this.state.error !== nextState.error) {
+      return true;
+    }
+
+    return false;
+  }
+  
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Catch errors in any components below and re-render with error message
     this.setState({

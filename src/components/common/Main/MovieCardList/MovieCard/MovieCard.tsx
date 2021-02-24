@@ -8,7 +8,7 @@ import { IMovie } from '../../../../../models/common/interfaces/IMovie';
 
 import DropdownMenu from '../../../DropdownMenu/DropdownMenu';
 import AddEditMovie from '../../../modals/AddEditMovie/AddEditMovie';
-import DeleteMovie from '../../../modals/DeleteMovie/DeleteMovieMovie';
+import DeleteMovie from '../../../modals/DeleteMovie/DeleteMovie';
 
 import { getYear } from '../../../../../services/helpers/getYear';
 import { intialValueMovie } from '../../../../../services/data/initialValueMovie';
@@ -32,7 +32,7 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
   const closeDeleteMovieModal = useCallback( () => { setIsDeleteMovieOpen(false); }, []);
 
   const dispatch = useDispatch();
-  const query = useQuery();
+  // const query = useQuery();
   const history = useHistory();
 
   const updateMovie = useCallback(
@@ -63,8 +63,13 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
   return (
     <>
     <div className={`${styles['movie-card']} ${className}`} onClick={redirectToMovieDetailsPage}>
-      <figure>
-        <img className={styles['movie-card__image']} src={movie.posterPath}/>
+      <figure className={styles['movie-card__figure']} >
+        <img className={styles['movie-card__image']} 
+             src={movie.posterPath}  
+             alt={movie.title}
+             width="320"
+             height="460"
+        />
       </figure>
       <div className={styles['movie-card__wrapper']}>
         <div className={styles['movie-card__title']}>{movie.title}</div>
@@ -83,7 +88,7 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
       overlayClassName="react-overlay"
       contentLabel="Example Modal"
     >
-      <AddEditMovie movie={movie} onClickCloseButton={closeEditMovieModal} onSubmit={updateMovie}/>
+      <AddEditMovie movie={movie} onClickCloseButton={closeEditMovieModal} onSubmit={updateMovie} />
     </Modal>
     <Modal
       isOpen={isDeleteMovieModalOpen}
@@ -93,7 +98,7 @@ export function MovieCard({ className, movie = intialValueMovie()}: MovieCardPro
       contentLabel="Example Modal"
     >
 
-      <DeleteMovie id={movie.id} onClick={closeDeleteMovieModal} onConfirm={deleteMovie}/>
+      <DeleteMovie id={movie.id} onClick={closeDeleteMovieModal} onConfirm={deleteMovie} />
     </Modal>
   </>
   );
@@ -111,4 +116,4 @@ function convertArrayGenersToString(geners: string[]) {
   return geners.join(', ')
 }
 
-export default MovieCard
+export default React.memo(MovieCard);

@@ -15,8 +15,13 @@ export function Baner({ className }: BanerProps): JSX.Element {
   const redirectToSearchPage = useRedirectToSearchPage();
   
   return (
-    <img className={`${styles.baner} ${className}`} src={baner} onClick={redirectToSearchPage}/>
+    <img className={`${styles.baner} ${className}`} 
+         src={baner} onClick={redirectToSearchPage} 
+         alt='' 
+         width="150"
+         height="26"
+    />
   );
 }
 
-export default Baner
+export default React.memo(Baner);

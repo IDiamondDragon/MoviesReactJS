@@ -6,10 +6,16 @@
    color: $silverChalice;
    cursor: pointer;
 
+   &__figure {
+    height: 460px;
+    width: 320px;
+    margin-bottom: 19px;
+    background-color: $emperor;
+  }  
+
    &__image {
       height: 460px;
       width: 320px;
-      margin-bottom: 19px;
    }  
 
    

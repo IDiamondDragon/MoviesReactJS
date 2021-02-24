@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Baner from '../../common/Banner/Baner';
-import MovieDetaislPanel from './MovieDetailsPanel/MovieDetailsPanel';
+import MovieDetailsPanel from './MovieDetailsPanel/MovieDetailsPanel';
 import SearchIcon from './SearchIcon/SearchIcon';
 import { RootState } from '../../../store/store';
 
@@ -26,11 +26,11 @@ export function Header(): JSX.Element {
 
   return (
     <div className={styles.header}>
-      <Baner className={styles.header__baner}/>
-      <SearchIcon className={styles['header__search-icon']}/>
-      <MovieDetaislPanel movie={movie} className={styles.header__panel}/>
+      <Baner className={styles.header__baner} />
+      <SearchIcon className={styles['header__search-icon']} />
+      <MovieDetailsPanel movie={movie} className={styles.header__panel} />
     </div>
   );
 }
 
-export default Header
+export default React.memo(Header)

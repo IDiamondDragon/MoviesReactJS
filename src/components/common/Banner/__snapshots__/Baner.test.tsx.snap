@@ -3,6 +3,7 @@
 exports[`Baner renders correctly 1`] = `
 <DocumentFragment>
   <img
+    alt=""
     class="baner "
     src="test-file-stub"
   />

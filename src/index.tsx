@@ -27,7 +27,7 @@ const renderFunction: ReactDOM.Renderer = entryBlock?.hasChildNodes() ? ReactDOM
 renderFunction(
   <Provider store={configureStore(false, window.INITIAL_STATE_REDUX)}>
     <BrowserRouter>
-      <App lazyLoaded={true}/>
+      <App lazyLoaded />
     </BrowserRouter>
   </Provider>, 
   entryBlock

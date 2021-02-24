@@ -77,4 +77,4 @@ export function SearchPanel({ className }: SearchPanelProps): JSX.Element {
   );
 }
 
-export default SearchPanel
+export default React.memo(SearchPanel)

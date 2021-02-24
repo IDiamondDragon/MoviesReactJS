@@ -28,4 +28,4 @@ export function InputField(props: BaseTextFieldProps): JSX.Element  {
   );
 }
 
-export default InputField
+export default InputField;

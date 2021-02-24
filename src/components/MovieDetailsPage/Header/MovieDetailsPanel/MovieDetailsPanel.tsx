@@ -12,11 +12,11 @@ export interface MovieDetaislPanelProps {
   className: string;
 }
 
-export function MovieDetaislPanel({ className, movie = intialValueMovie() }: MovieDetaislPanelProps): JSX.Element {
+export function MovieDetailsPanel({ className, movie = intialValueMovie() }: MovieDetaislPanelProps): JSX.Element {
   return (
     <div className={`${styles['movie-details-panel']} ${className}`}>
       <figure>
-        <img className={styles['movie-image']} src={movie.posterPath}/>
+        <img className={styles['movie-image']} src={movie.posterPath} alt={movie.title} />
       </figure>
       <div className={styles['movie-details']}>
         <div className={styles['movie-details__wrap-title-vote-average']}>
@@ -34,4 +34,4 @@ export function MovieDetaislPanel({ className, movie = intialValueMovie() }: Mov
   );
 }
 
-export default MovieDetaislPanel
+export default React.memo(MovieDetailsPanel);

@@ -14,7 +14,7 @@ function NoFoundPage(): JSX.Element {
 
   return (
     <div className={styles['not-found-page']}>
-      <Header/>
+      <Header />
       <div className={styles['content']}>
         <div className={styles['message']}>Page Not Found</div>
         <div className={styles['image404']} />
@@ -24,7 +24,7 @@ function NoFoundPage(): JSX.Element {
                       GO BACK TO HOME
             </button>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

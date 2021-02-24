@@ -13,8 +13,8 @@ export function SearchIcon({ className }: SearchIconProps): JSX.Element {
   const redirectToSearchPage = useRedirectToSearchPage();
 
   return (
-    <i className={`${styles['search-icon']} ${className}`} onClick={redirectToSearchPage}/>
+    <i className={`${styles['search-icon']} ${className}`} onClick={redirectToSearchPage} />
   );
 }
 
-export default SearchIcon
+export default React.memo(SearchIcon)

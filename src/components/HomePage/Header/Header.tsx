@@ -9,11 +9,11 @@ import styles from './Header.module.scss';
 export function Header(): JSX.Element {
   return (
     <div className={styles.header}>
-      <Baner className={styles.header__baner}/>
-      <AddMovieButton className={styles.header__button}/>
-      <SearchPanel className={styles.header__panel}/>
+      <Baner className={styles.header__baner} />
+      <AddMovieButton className={styles.header__button} />
+      <SearchPanel className={styles.header__panel} />
     </div>
   );
 }
 
-export default Header
+export default React.memo(Header)

@@ -1,8 +1,8 @@
 import path from "path";
 import { merge } from 'webpack-merge';
-import productionConfig from './webpack.config.prod'
 import webpack from "webpack";
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import productionConfig from './webpack.config.prod'
 
 console.log('\x1b[36m%s\x1b[0m', 'SERVER SIDE RENDERING'); 
 

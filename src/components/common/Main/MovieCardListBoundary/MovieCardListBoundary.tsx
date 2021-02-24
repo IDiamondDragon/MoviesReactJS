@@ -38,7 +38,7 @@ export class MovieCardListBoundary extends React.Component<Props, unknown> {
 }
 
 
-export default connect<Props, unknown, OwnProps, RootState>
+export default React.memo(connect<Props, unknown, OwnProps, RootState>
  (mapStateToProps)
- (MovieCardListBoundary)
+ (MovieCardListBoundary))
 

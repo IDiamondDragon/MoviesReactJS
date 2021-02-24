@@ -10,28 +10,28 @@ import styles from './App.module.scss';
 import { withSuspense } from '../hoc/routing/withSuspense';
 
 
-interface StateProps {
+interface AppProps {
   lazyLoaded: boolean;
 }
 
-export class App extends React.Component<StateProps, unknown>  {
-  constructor(public props: StateProps) {
+export class App extends React.Component<AppProps, unknown>  {
+  constructor(public props: AppProps) {
     super(props);
   }
 
   render(): JSX.Element {
-    let HomePageSuspense;
-    let MovieDetailsPageSuspense;
-    let NoFoundPageSuspense;
+    let HomePageWithSuspense;
+    let MovieDetailsPageWithSuspense;
+    let NoFoundPageWithSuspense;
 
     if (this.props.lazyLoaded) {
-      HomePageSuspense = withSuspense(React.lazy(() => import('./HomePage/HomePage')));
-      MovieDetailsPageSuspense = withSuspense(React.lazy(() => import('./MovieDetailsPage/MovieDetailsPage')));
-      NoFoundPageSuspense = withSuspense(React.lazy(() => import('./NoFoundPage/NotFoundPage')));
+      HomePageWithSuspense = withSuspense(React.lazy(() => import('./HomePage/HomePage')));
+      MovieDetailsPageWithSuspense = withSuspense(React.lazy(() => import('./MovieDetailsPage/MovieDetailsPage')));
+      NoFoundPageWithSuspense = withSuspense(React.lazy(() => import('./NoFoundPage/NotFoundPage')));
     } else {
-      HomePageSuspense = HomePage;
-      MovieDetailsPageSuspense = MovieDetailsPage;
-      NoFoundPageSuspense = NoFoundPage;
+      HomePageWithSuspense = HomePage;
+      MovieDetailsPageWithSuspense = MovieDetailsPage;
+      NoFoundPageWithSuspense = NoFoundPage;
     }
 
 
@@ -43,18 +43,18 @@ export class App extends React.Component<StateProps, unknown>  {
               <Switch>
 
                   <Route exact path='/search'>
-                      <HomePageSuspense/>
+                      <HomePageWithSuspense />
                   </Route>
 
                   <Route exact path='/film/:id'>
-                      <MovieDetailsPageSuspense/>
+                      <MovieDetailsPageWithSuspense />
                   </Route>
 
                   <Route exact path='/' 
                           render={() => <Redirect to={"/search"}/>}/>
 
                   <Route path='*'>
-                      <NoFoundPageSuspense/>
+                      <NoFoundPageWithSuspense />
                   </Route>
 
               </Switch>

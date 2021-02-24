@@ -17,7 +17,7 @@ function renderDropdownMenu(props: Partial<DropdownMenuProps> = {}) {
     className: ''
   }
 
-  return render(<DropdownMenu {...defaultProps} {...props}/>)
+  return render(<DropdownMenu {...defaultProps} {...props} />)
 }
 
 

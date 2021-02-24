@@ -20,4 +20,4 @@ export function ConterMovies({ className }: ConterMoviesProps): JSX.Element {
   );
 }
 
-export default ConterMovies
+export default React.memo(ConterMovies);

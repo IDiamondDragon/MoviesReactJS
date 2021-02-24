@@ -18,7 +18,7 @@ export function MovieCardList({ className, movies }: MovieCardListProps): JSX.El
         movies.map((movie) => {
             return (<MovieCard key={movie.id} 
                                className={styles["right-margin"]}
-                               movie={movie}/>)
+                               movie={movie} />)
           }
         )    
       }
@@ -26,4 +26,4 @@ export function MovieCardList({ className, movies }: MovieCardListProps): JSX.El
   );
 }
 
-export default MovieCardList
+export default React.memo(MovieCardList);

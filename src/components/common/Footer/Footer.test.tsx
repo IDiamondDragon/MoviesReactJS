@@ -15,7 +15,7 @@ jest.mock('../../../services/hooks/useRedirectToSearchPage', () => {
 describe('<Footer />', () => {
 
   test("renders correctly", () => {
-      const { asFragment } = render(<Footer/>);
+      const { asFragment } = render(<Footer />);
 
       expect(asFragment()).toMatchSnapshot();
   })

@@ -46,15 +46,13 @@ export class MovieApiService {
   static updateMovie(movie: IMovie): Promise<IMovie>  {
     const serverMovieFormatData = convertMovieClientToMovieServerFormatData(movie);
 
-    const request = axios.post<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
+    const request = axios.put<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
       return convertMovieServerToMovieClientFormatData(response.data)
     }); 
     
     this.pendingRequests.push(request);
 
-    return axios.put<IMovieResponse>(`${API_PATHS.movies}`, serverMovieFormatData).then( (response) => { 
-      return convertMovieServerToMovieClientFormatData(response.data)
-    });
+    return request
   }
 
   static deleteMovie(id: number | undefined): Promise<number | undefined>  {

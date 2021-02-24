@@ -8,9 +8,9 @@ import styles from './Header.module.scss';
 export function Header(): JSX.Element {
   return (
     <div className={styles.header}>
-      <Baner className={styles.header__baner}/>
+      <Baner className={styles.header__baner} />
     </div>
   );
 }
 
-export default Header
+export default React.memo(Header)

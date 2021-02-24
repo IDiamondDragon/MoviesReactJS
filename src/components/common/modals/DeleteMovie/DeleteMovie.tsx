@@ -32,4 +32,4 @@ export function DeleteMovie({ className, id, onClick, onConfirm }: AddEditMovieP
   );
 }
 
-export default DeleteMovie
+export default DeleteMovie;

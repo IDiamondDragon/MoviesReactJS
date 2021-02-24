@@ -20,7 +20,7 @@ function renderAddEditMovieForm(props: Partial<AddEditMovieProps> = {}) {
     className: ''
   }
 
-  return render(<AddEditMovie {...defaultProps} {...props}/>)
+  return render(<AddEditMovie {...defaultProps} {...props} />)
 }
 
 

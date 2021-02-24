@@ -56,4 +56,4 @@ export function SelectField(props: ArrayTextFieldProps): JSX.Element {
   );
 }
 
-export default SelectField
+export default SelectField;

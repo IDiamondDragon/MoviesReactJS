@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import SearchPanel from './SearchPanel';
 
 function renderSearchPanel() {
-  return render(<SearchPanel className="none"/>)
+  return render(<SearchPanel className="none" />)
 }
 
 jest.mock('react', () => {

@@ -21,7 +21,7 @@ export interface AddEditMovieState {
   movie: IMovie;
 }
 
-function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
+export function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
   const getIntialValue = useCallback(
     
     (): IMovie => {
@@ -60,7 +60,7 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
            className="modal__cross" 
            onClick={props.onClickCloseButton}></div>
       <Formik
-        enableReinitialize={true}
+        enableReinitialize
         initialValues={getIntialValue()}
         validationSchema={MovieValidationSchema}
         onSubmit={submit}
@@ -83,19 +83,22 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
               type="text"
               placeholder="Title here" 
               name="title"
-              title="TITLE" />        
+              title="TITLE" 
+          />        
           <InputField   
               data-testid="releaseDate"
               type="date"
               placeholder="Selecte Date" 
               name="releaseDate"
-              title="RELEASE DATE" />   
+              title="RELEASE DATE" 
+          />   
           <InputField   
               data-testid="posterPath"
               type="text"
               placeholder="Movie URL here" 
               name="posterPath"
-              title="MOVIE URL" />   
+              title="MOVIE URL" 
+          />   
           <SelectField
               data-testid="genres"
               placeholder="Overview here" 
@@ -107,13 +110,15 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
               type="text"
               placeholder="Overview here" 
               name="overview"
-              title="OVERVIEW" />   
+              title="OVERVIEW" 
+          />   
           <InputField  
               data-testid="runtime" 
               type="text"
               placeholder="Runtime here" 
               name="runtime"
-              title="RUNTIME" />  
+              title="RUNTIME" 
+          />  
           <div className={styles['add-edit-movie-form__buttons']}>
             <button type="button"
                     className={`field__button button--without-background ${styles['add-edit-movie-form__reset']}`}
@@ -134,4 +139,4 @@ function AddEditMovie(props: AddEditMovieProps): JSX.Element    {
   );
 }
 
-export default AddEditMovie
+export default AddEditMovie;

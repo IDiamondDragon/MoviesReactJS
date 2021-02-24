@@ -19,7 +19,8 @@ import styles from './MovieDetailsPage.module.scss';
 
 function MovieDetailsPage(): JSX.Element {
   const query = useQuery();
-  const search = decodeURI(query.get('search') as string);
+  let search = query.get('search');
+  search = decodeURI(search ? search : '');
 
   const dispatch = useDispatch();
 
@@ -47,9 +48,9 @@ function MovieDetailsPage(): JSX.Element {
 
   return (
     <div className={styles['movie-details-page']}>
-      <Header/>
-      <Main className={styles.stretch} movies={movies}/>
-      <Footer/>
+      <Header />
+      <Main className={styles.stretch} movies={movies} />
+      <Footer />
     </div>
   );
 }

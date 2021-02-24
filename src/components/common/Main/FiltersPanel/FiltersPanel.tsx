@@ -11,6 +11,8 @@ import styles from './FiltersPanel.module.scss';
 
 const filters: string[] = ["All", "Documentary", "Comedy", "Horror", "Mystery"];
 
+const SelectMemoized = React.memo(Select);
+
 export interface FiltersPanelProps {
   className?: string
 }
@@ -74,15 +76,15 @@ export function FiltersPanel({ className }: FiltersPanelProps): JSX.Element {
         {/* <span className={styles['sort__combobox']}>RELEASE DATE 
             <i className={`${styles['arrow']} ${styles['down']}`}></i>
         </span> */}
-        <Select
-              closeMenuOnSelect={true}
+        <SelectMemoized
+              closeMenuOnSelect
               className={`react-select-container ${styles['sort__combobox']} `}
               classNamePrefix="react-select"
               defaultValue={sortingOptions[0]}
               options={sortingOptions}
               onChange={handleSelectChange}
               // styles={colourStyles}
-            />
+        />
       </div>
     </div>
   );
@@ -97,4 +99,4 @@ function resetSelectedElement(parent: HTMLDivElement, filterSelectedStyle) {
 }
 
 
-export default FiltersPanel
+export default React.memo(FiltersPanel)

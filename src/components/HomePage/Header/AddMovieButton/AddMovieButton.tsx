@@ -55,10 +55,10 @@ export function AddMovieButton({ className }: AddMovieButtonProps): JSX.Element 
           overlayClassName="react-overlay"
           contentLabel="Example Modal"
         >
-          <AddEditMovie movie={intialValueMovie()} onClickCloseButton={closeModal} onSubmit={addMovie}/>
+          <AddEditMovie movie={intialValueMovie()} onClickCloseButton={closeModal} onSubmit={addMovie} />
       </Modal>
     </>
   );
 }
 
-export default AddMovieButton
+export default React.memo(AddMovieButton);

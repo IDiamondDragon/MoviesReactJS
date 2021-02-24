@@ -6,6 +6,7 @@ exports[`<Footer /> renders correctly 1`] = `
     class="footer"
   >
     <img
+      alt=""
       class="baner footer__baner"
       src="test-file-stub"
     />
