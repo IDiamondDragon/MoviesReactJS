@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, CombinedState, combineReducers, compose, createStore, Store } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
 
@@ -39,20 +39,35 @@ const epicMiddleware = createEpicMiddleware<
   RootState
 >();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Create store
-function configureStore(initialState?: RootState) {
+function configureStore(isServer: boolean, initialState?: RootState): Store<CombinedState<{
+  movies: IMoviesState;
+  filters: IFiltersState;
+}>, ActionsType> & {
+  dispatch: unknown;
+} {
+  let composeEnhancers;
+
+  if (!isServer) {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  } else {
+    composeEnhancers = compose;
+  }
+  
   // configure middlewares
   const middlewares = [epicMiddleware];
   // compose enhancers
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
+
   // create store
-  return createStore(reducers, initialState, enhancer);
+  const store = createStore(reducers, initialState, enhancer);
+
+  epicMiddleware.run(epics);
+
+  return store;
 }
 
-const store = configureStore();
 
-epicMiddleware.run(epics);
 
-export { store };
+export { configureStore };

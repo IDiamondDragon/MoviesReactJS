@@ -19,7 +19,7 @@ import styles from './MovieDetailsPage.module.scss';
 
 function MovieDetailsPage(): JSX.Element {
   const query = useQuery();
-  const search = query.get('search');
+  const search = decodeURI(query.get('search') as string);
 
   const dispatch = useDispatch();
 
